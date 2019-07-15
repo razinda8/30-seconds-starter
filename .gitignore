@@ -51,6 +51,11 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
+
 # Yarn Integrity file
 .yarn-integrity
 
@@ -59,3 +64,10 @@ typings/
 
 # next.js build output
 .next
+
+# gatsby files
+.cache/
+public
+
+# Mac files
+.DS_Store
