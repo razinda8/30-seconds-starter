@@ -1,3 +1,7 @@
+---
+title: snippetA
+---
+
 ### snippetB
 
 Explain briefly what the snippet does.
