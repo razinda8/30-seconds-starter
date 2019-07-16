@@ -47,7 +47,8 @@
     "builder": "node ./scripts/build.js",
     "webber": "gatsby build",
     "webber:dev": "gatsby develop",
-    "webber:serve": "gatsby serve"
+    "webber:serve": "gatsby serve",
+    "extractor": "node ./scripts/extract.js"
   },
   "repository": {
     "type": "git",

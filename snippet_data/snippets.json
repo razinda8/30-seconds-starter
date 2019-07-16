@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "id": "snippetA",
+      "title": "snippetA",
+      "type": "snippet",
+      "attributes": {
+        "fileName": "snippetA.md",
+        "text": "Explain briefly what the snippet does.\r\n\r\nExplain briefly how the snippet works.\r\n\r\n",
+        "codeBlocks": {
+          "code": "const snippetA = () => null;",
+          "example": "snippetA(''); // null"
+        },
+        "tags": [
+          "function",
+          "utility",
+          "helper"
+        ]
+      },
+      "meta": {
+        "hash": "bf20ed177c9839b0c0572728ed5553152f85e19bd9ac0c65bbf9ce7e47b3b7cb"
+      }
+    },
+    {
+      "id": "snippetB",
+      "title": "snippetB",
+      "type": "snippet",
+      "attributes": {
+        "fileName": "snippetB.md",
+        "text": "Explain briefly what the snippet does.\r\n\r\nExplain briefly how the snippet works.\r\n\r\n",
+        "codeBlocks": {
+          "code": "const snippetB = () => undefined;",
+          "example": "snippetB(''); // undefined"
+        },
+        "tags": [
+          "utility",
+          "function",
+          "helper"
+        ]
+      },
+      "meta": {
+        "hash": "537764dce9e0fadaccc32bd37bc6ed4d30de14b6d59f45d7039b6228169454c4"
+      }
+    }
+  ],
+  "meta": {
+    "specification": "http://jsonapi.org/format/"
+  }
+}
