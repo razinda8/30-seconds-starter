@@ -48,8 +48,8 @@ module.exports = {
         name: `30-seconds-starter`,
         short_name: `30s`,
         start_url: `/`,
-        background_color: `#000`,
-        theme_color: `#000`,
+        background_color: `#111`,
+        theme_color: `#111`,
         display: `minimal-ui`,
         icon: `assets/30s-icon.png`, // This path is relative to the root of the site.
       },

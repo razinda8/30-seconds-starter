@@ -14,9 +14,6 @@ const Shell = ({ children }) => {
 
   return (
     <>
-      <div>
-        <h1>{data.site.siteMetadata.title}</h1>
-      </div>
       <div
         style={{
           margin: `0 auto`,
@@ -25,6 +22,7 @@ const Shell = ({ children }) => {
           paddingTop: 0,
         }}
       >
+        <h1>{data.site.siteMetadata.title}</h1>
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
