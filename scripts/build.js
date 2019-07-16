@@ -7,6 +7,8 @@ const fs = require('fs-extra');
 const path = require('path');
 const { green, red } = require('kleur');
 const util = require('./util');
+const markdown = require('markdown-builder');
+const { headers, misc, lists } = markdown;
 
 // Paths (relative to package.json)
 const SNIPPETS_PATH = './snippets';
@@ -22,14 +24,21 @@ if (util.isTravisCI() && /^Travis build: \d+/g.test(process.env['TRAVIS_COMMIT_M
 
 // Setup everything
 let snippets = {},
+  snippetsArray = [],
   startPart = '',
   endPart = '',
   output = '',
   tagDbData = {};
+const EMOJIS = {};
+
 console.time('Builder');
 
 // Synchronously read all snippets from snippets folder and sort them as necessary (case-insensitive)
 snippets = util.readSnippets(SNIPPETS_PATH);
+snippetsArray = Object.keys(snippets).reduce((acc, key) => {
+  acc.push(snippets[key]);
+  return acc;
+}, []);
 
 // Load static parts for the README file
 try {
@@ -40,6 +49,68 @@ try {
   process.exit(1);
 }
 
-Object.keys(snippets).forEach(key => {
-  console.dir(snippets[key]);
-});
+// Create the output for the README file
+try {
+
+  const tags = util.prepTaggedData(Object.keys(snippets).reduce((acc,key) => {
+    acc[key] = snippets[key].attributes.tags;
+    return acc;
+  }, {}));
+
+  output += `${startPart}\n`;
+
+  // Loop over tags and snippets to create the table of contents
+  for (const tag of tags) {
+    const capitalizedTag = util.capitalize(tag, true);
+    const taggedSnippets = snippetsArray.filter(snippet => snippet.attributes.tags[0] === tag);
+    output += headers.h3((EMOJIS[tag] || '') + ' ' + capitalizedTag).trim();
+
+    output +=
+      misc.collapsible(
+        'View contents',
+        lists.ul(taggedSnippets, snippet =>
+          misc.link(
+            `\`${snippet.title}\``,
+            `${misc.anchor(snippet.title)}${snippet.attributes.tags.includes('advanced') ? '-' : ''}`
+          )
+        )
+      ) + '\n';
+  }
+
+  for (const tag of tags) {
+    const capitalizedTag = util.capitalize(tag, true);
+    const taggedSnippets = snippetsArray.filter(snippet => snippet.attributes.tags[0] === tag);
+
+    output += misc.hr() + headers.h2((EMOJIS[tag] || '') + ' ' + capitalizedTag) + '\n';
+
+    for (let snippet of taggedSnippets) {
+      if (snippet.attributes.tags.includes('advanced'))
+        output += headers.h3(snippet.title + ' ' + misc.image('advanced', '/advanced.svg')) +'\n';
+      else 
+        output += headers.h3(snippet.title) +'\n';
+
+      output += snippet.attributes.text;
+
+      output += '```js\n' + snippet.attributes.codeBlocks.code+'\n```';
+
+      output += misc.collapsible(
+        'Examples',
+        '```js\n' + snippet.attributes.codeBlocks.examples + '\n```'
+      );
+
+      output += '\n<br>' + misc.link('⬆ Back to top', misc.anchor('Contents')) + '\n';
+    }
+  }
+
+  // Add the ending static part
+  output += `\n${endPart}\n`;
+  // Write to the README file
+  fs.writeFileSync('README-test.md', output);
+
+} catch (err) {
+  console.log(`${red('ERROR!')} During README generation: ${err}`);
+  process.exit(1);
+}
+
+console.log(`${green('SUCCESS!')} README file generated!`);
+console.timeEnd('Builder');

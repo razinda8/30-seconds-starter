@@ -3,8 +3,6 @@ title: snippetA
 tags: function, utility, helper
 ---
 
-### snippetA
-
 Explain briefly what the snippet does.
 
 Explain briefly how the snippet works.

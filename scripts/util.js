@@ -49,10 +49,11 @@ const readSnippets = snippetsPath => {
       let data = frontmatter(fs.readFileSync(path.join(snippetsPath, snippet), 'utf8'));
       snippets[snippet] = {
         id: snippet.slice(0, -3),
+        title: data.attributes.title,
         type: 'snippet',
         attributes: {
           fileName: snippet,
-          text: data.body,
+          text: getTextualContent(data.body),
           codeBlocks: getCodeBlocks(data.body),
           tags: data.attributes.tags.split(',').map(t => t.trim())
         },
@@ -117,7 +118,7 @@ const getCodeBlocks = str => {
 };
 // Gets the textual content for a snippet file.
 const getTextualContent = str => {
-  const regex = /###.*\n*([\s\S]*?)```/g;
+  const regex = /([\s\S]*?)```/g;
   const results = [];
   let m = null;
   while ((m = regex.exec(str)) !== null) {
@@ -141,6 +142,16 @@ const prepTaggedData = tagDbData =>
             ? -1
             : a.localeCompare(b)
     );
+const makeExamples = data => {
+  data =
+    data.slice(0, data.lastIndexOf('```js')).trim() +
+    misc.collapsible(
+      'Examples',
+      data.slice(data.lastIndexOf('```js'), data.lastIndexOf('```')) +
+      data.slice(data.lastIndexOf('```'))
+    );
+  return `${data}\n<br>${misc.link('⬆ Back to top', misc.anchor('Contents'))}\n\n`;
+};
 module.exports = {
   getMarkDownAnchor,
   getFilesInDir,
@@ -154,5 +165,6 @@ module.exports = {
   getTextualContent,
   isTravisCronOrAPI,
   isNotTravisCronOrAPI,
-  prepTaggedData
+  prepTaggedData,
+  makeExamples
 };
