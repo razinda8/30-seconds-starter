@@ -1,5 +1,6 @@
 ---
-title: snippetA
+title: snippetB
+tags: function, utility, helper
 ---
 
 ### snippetB
