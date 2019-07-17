@@ -3,9 +3,13 @@ import { graphql } from 'gatsby';
 
 import Meta from '../components/Meta';
 import Shell from '../components/Shell';
+import SnippetCard from '../components/SnippetCard';
 
 const SnippetPage = (props) => {
   const post = props.data.markdownRemark;
+  const postData = props.data.snippetDataJson.data.find(v => v.title === post.frontmatter.title);
+  console.dir(post);
+  console.dir(postData);
 
   return (
     <>
@@ -14,7 +18,14 @@ const SnippetPage = (props) => {
         description={post.excerpt} 
       />
       <Shell>
-        <div dangerouslySetInnerHTML={{__html: post.html}} />
+        <SnippetCard snippetData={{
+          title: postData.title,
+          html: post.html,
+          code: postData.attributes.codeBlocks.code,
+          example: postData.attributes.codeBlocks.example,
+          tags: postData.attributes.tags,
+          text: postData.attributes.text
+        }} />
       </Shell>
     </>
   );
@@ -60,6 +71,20 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+      }
+    }
+    snippetDataJson(meta: {type: {eq: "snippetArray"}}) {
+      data {
+        title
+        id
+        attributes {
+          text
+          codeBlocks {
+            code
+            example
+          }
+          tags
+        }
       }
     }
   }

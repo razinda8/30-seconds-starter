@@ -25,7 +25,6 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
       }
     `
   );
-      console.log(file);
 
   const metaDescription = description || site.siteMetadata.description;
 

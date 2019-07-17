@@ -55,7 +55,10 @@ const Shell = ({ children }) => {
         <input className={menuOpen ? "col-nav" : ""} type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" />
         <nav className={menuOpen ? "col-nav" : ""}>
           {
-            data.snippetDataJson.data.map(v => (<Link tags={v.attributes.tags.join(',')} to={`/${v.id}`}>{v.title}</Link>))
+            data.snippetDataJson.data.map(v => (<
+              Link tags={v.attributes.tags.join(',')} key={v.id} to={`/${v.id}`}>{v.title}</Link>
+              )
+            )
           }
         </nav>
         <main className="col-centered">
