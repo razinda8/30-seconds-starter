@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const getTextualContent = str => {
   const regex = /([\s\S]*?)<div class="gatsby-highlight"/g;
@@ -35,6 +36,7 @@ const getCodeBlocks = str => {
   };
 };
 
+
 const SnippetCard = ({snippetData}) => {
   const [examplesOpen, setExamplesOpen] = React.useState(false);
 
@@ -52,7 +54,23 @@ const SnippetCard = ({snippetData}) => {
         dangerouslySetInnerHTML={{__html: cardContentHtml}}
       />
       <div className="copy-button-container">
-        <button className="copy-button" aria-label="Copy to clipboard" />
+        <CopyToClipboard 
+          text={snippetData.code}
+          onCopy={() => {
+            let tst = document.createElement('div');
+            tst.classList = 'toast';
+            tst.innerHTML = 'Snippet copied to clipboard!';
+            document.body.appendChild(tst);
+            setTimeout(function () {
+              tst.style.opacity = 0;
+              setTimeout(function () {
+                document.body.removeChild(tst);
+              }, 300);
+            }, 1700);
+          }}
+        >
+          <button className="copy-button" aria-label="Copy to clipboard" />
+        </CopyToClipboard>
       </div>
       <pre className="section card-code language-js" 
         dangerouslySetInnerHTML={{ __html: cardCodeHtml }}
