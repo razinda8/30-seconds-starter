@@ -46,6 +46,7 @@ let listingData = {
     completeData.data.map(v => ({
       id: v.id,
       type: 'snippetListing',
+      title: v.title,
       attributes: {
         tags: v.attributes.tags
       },
@@ -53,7 +54,6 @@ let listingData = {
         hash: v.meta.hash
       }
     })),
-
   meta: {
     specification: 'http://jsonapi.org/format/',
     type: 'snippetListingArray'

@@ -3,6 +3,7 @@
     {
       "id": "snippetA",
       "type": "snippetListing",
+      "title": "snippetA",
       "attributes": {
         "tags": [
           "function",
@@ -17,6 +18,7 @@
     {
       "id": "snippetB",
       "type": "snippetListing",
+      "title": "snippetB",
       "attributes": {
         "tags": [
           "utility",

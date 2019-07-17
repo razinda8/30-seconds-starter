@@ -15,6 +15,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `snippet_data`,
+        path: `${__dirname}/snippet_data`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `assets`,
         path: `${__dirname}/assets`,
       },
@@ -40,6 +47,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
