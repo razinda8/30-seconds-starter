@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import '../styles/index.scss';
 import Meta from '../components/Meta';
 import Shell from '../components/Shell';
 

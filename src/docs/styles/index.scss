@@ -451,6 +451,7 @@ $grid-large-breakpoint: 1280px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: calc(0.5 * var(#{$universal-margin-var}));
+  width: 100%;
   &.card-container {
     position: absolute;
     padding-top: 3.5rem; 

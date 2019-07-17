@@ -40,15 +40,16 @@ const Shell = ({ children }) => {
           </a>
         </h1>
       </header>
-      <div classname="container card-container">
-        <input classname="search" type="search" id="searchInput" onkeyup="search(this)" placeholder="Search..." aria-label="Snippet search" />
+      <div className="container card-container">
+        <input className="search" type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" />
         <nav>
         </nav>
         <main className="col-centered">
           <span id="top"><br /><br /></span>
+          {children}
         </main>
-        <footer class="col-full-width container">
-          <div class="col-centered">
+        <footer className="col-full-width container">
+          <div className="col-centered">
             <p style={{display: 'inline-block'}}>
               <strong>30 seconds starter</strong> is licensed under the <a href="https://github.com/30-seconds/30-seconds-starter/blob/master/LICENSE">MIT</a> license.<br />Logos made by <a href="https://github.com/Chalarangelo">Angelos Chalaris</a> and ribbon made by <a href="https://github.com/tholman/github-corners">Tim Holman</a> are licensed under the <a href="https://opensource.org/licenses/MIT">MIT</a> license.
             </p>

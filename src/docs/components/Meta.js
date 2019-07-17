@@ -1,6 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
+import '../styles/index.scss';
 
 const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
   const { site, file } = useStaticQuery(
@@ -31,7 +32,7 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
@@ -65,6 +66,9 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
           content: file.childImageSharp.fluid.src,
         },
       ].concat(meta)}
+      bodyAttributes={{
+        class: 'card-page'
+      }}
     />
   );
 }
