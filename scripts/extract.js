@@ -37,7 +37,8 @@ snippetsArray = Object.keys(snippets).reduce((acc, key) => {
 const completeData = {
   data: [...snippetsArray],
   meta: {
-    specification: 'http://jsonapi.org/format/'
+    specification: 'http://jsonapi.org/format/',
+    type: 'snippetArray'
   }
 };
 let listingData = {
@@ -54,7 +55,8 @@ let listingData = {
     })),
 
   meta: {
-    specification: 'http://jsonapi.org/format/'
+    specification: 'http://jsonapi.org/format/',
+    type: 'snippetListingArray'
   }
 };
 // Write files

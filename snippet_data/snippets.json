@@ -44,6 +44,7 @@
     }
   ],
   "meta": {
-    "specification": "http://jsonapi.org/format/"
+    "specification": "http://jsonapi.org/format/",
+    "type": "snippetArray"
   }
 }
