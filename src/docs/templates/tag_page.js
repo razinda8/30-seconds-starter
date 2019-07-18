@@ -41,6 +41,7 @@ const TagRoute = (props) => {
         title={capitalize(tag)}
       />
       <Shell>
+        <h2 className='category-name'>{capitalize(tag)}</h2>
         {posts &&
           posts.map(({ node }) => (
             <SnippetCard key={node.id} snippetData={{
