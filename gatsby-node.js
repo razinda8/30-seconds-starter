@@ -58,7 +58,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Create tag pages.
     const tags = posts.reduce((acc,post) => {
-      if(!post.node.frontmatter && !post.node.frontmatter.tags)
+      if(!post.node.frontmatter || !post.node.frontmatter.tags)
         return acc;
       const primaryTag = post.node.frontmatter.tags.split(',')[0];
       if(!acc.includes(primaryTag))

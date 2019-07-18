@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `30 seconds starter`,
-    description: `Kick off your next, great 30 seconds project with this starter. This barebones starter ships with all the customized 30 seconds Gatsby configuration files you might need.`,
+    description: `Kick off your next, great 30 seconds project with this starter.`,
     author: `@30-seconds`,
   },
   plugins: [
