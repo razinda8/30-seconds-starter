@@ -24,6 +24,9 @@ const getCodeBlocks = str => {
   };
 };
 
+const capitalize = ([first, ...rest], lowerRest = false) =>
+  first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
+
 const TagRoute = (props) => {
   const posts = props.data.allMarkdownRemark.edges;
   const tag = props.pageContext.tag;
@@ -31,11 +34,11 @@ const TagRoute = (props) => {
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
     } tagged in “${tag}”`;
-    
+
   return (
     <>
       <Meta
-        title={tag}
+        title={capitalize(tag)}
       />
       <Shell>
         {posts &&
