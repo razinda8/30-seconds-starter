@@ -36,10 +36,12 @@ const getCodeBlocks = str => {
   };
 };
 
+const CardCorner = ({ difficulty = 'intermediate' }) => (
+  <div className={`corner ${difficulty}`} aria-label={difficulty} title={difficulty} />
+);
 
 const SnippetCard = ({snippetData}) => {
   const [examplesOpen, setExamplesOpen] = React.useState(false);
-
 
   let cardContentHtml = `
     <h4 id=${snippetData.title}>${snippetData.title}</h4>
@@ -47,9 +49,11 @@ const SnippetCard = ({snippetData}) => {
   `;
   let cardCodeHtml = `${getCodeBlocks(snippetData.html).code}`;
   let cardExamplesHtml = `${getCodeBlocks(snippetData.html).example}`;
+  let difficulty = snippetData.tags.includes('advanced') ? 'advanced' : snippetData.tags.includes('beginner') ? 'beginner' : 'intermediate';
 
   return ( 
     <div className="card code-card">
+      <CardCorner difficulty={difficulty} />
       <div className="section card-content" 
         dangerouslySetInnerHTML={{__html: cardContentHtml}}
       />
