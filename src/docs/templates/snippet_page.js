@@ -22,9 +22,7 @@ const SnippetPage = (props) => {
           title: postData.title,
           html: post.html,
           code: postData.attributes.codeBlocks.code,
-          example: postData.attributes.codeBlocks.example,
-          tags: postData.attributes.tags,
-          text: postData.attributes.text
+          tags: postData.attributes.tags
         }} />
       </Shell>
     </>

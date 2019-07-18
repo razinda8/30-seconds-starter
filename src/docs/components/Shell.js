@@ -44,11 +44,11 @@ const Shell = ({ children }) => {
       <button className={menuOpen ? "menu-button toggled" : "menu-button"} onClick={() => setMenuOpen(!menuOpen)}></button>
       <header>
         <h1 className="logo">
-          <a href="./index">
+          <Link to="/">
             <img src={data.file.childImageSharp.original.src} alt="logo" />
             <span id="title">&nbsp;{data.site.siteMetadata.title}</span>
             <small>{data.site.siteMetadata.description}</small>
-          </a>
+          </Link>
         </h1>
       </header>
       <div className="container card-container">
