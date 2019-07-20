@@ -27,7 +27,7 @@ const IndexPage = (props) => {
       <Shell>
         <h1 className='landing-title'>{site.title}<small>{site.description}</small></h1>
         {/* <input type='search' className='body-search' placeholder='Search for snippets'></input> */}
-        <h4>Snippet categories</h4>
+        {/* <h4>Snippet categories</h4> */}
         <ul className='category-list card'>
           { tags.map(tag => (
             <li key={tag}><Link to={`/tags/${tag}`}>{capitalize(tag)}</Link></li>

@@ -1,6 +1,11 @@
 import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 
+import MenuTagList from './MenuTagList';
+
+const capitalize = ([first, ...rest], lowerRest = false) =>
+  first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
+
 const Shell = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -32,6 +37,15 @@ const Shell = ({ children }) => {
 
   const [menuOpen, setMenuOpen] = React.useState(false);
 
+  const tags = data.snippetDataJson.data.reduce((acc, snippet) => {
+    if (!snippet.attributes || !snippet.attributes.tags)
+      return acc;
+    const primaryTag = snippet.attributes.tags[0];
+    if (!acc.includes(primaryTag))
+      acc.push(primaryTag);
+    return acc;
+  }, []);
+
   return (
     <>
       <a href="https://github.com/30-seconds" className="github-corner" aria-label="View source on Github">
@@ -55,10 +69,9 @@ const Shell = ({ children }) => {
         <input className={menuOpen ? "col-nav" : ""} type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" />
         <nav className={menuOpen ? "col-nav" : ""}>
           {
-            data.snippetDataJson.data.map(v => (<
-              Link tags={v.attributes.tags.join(',')} key={v.id} to={`/${v.id}`}>{v.title}</Link>
-              )
-            )
+            tags.map(tag => ((
+              <MenuTagList tagName={tag} snippets={data.snippetDataJson.data} />
+            )))
           }
         </nav>
         <main className="col-centered">
