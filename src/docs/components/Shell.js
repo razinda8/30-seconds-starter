@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 
 import MenuTagList from './MenuTagList';
+import Search from "./Search";
 
 const capitalize = ([first, ...rest], lowerRest = false) =>
   first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
@@ -36,6 +37,7 @@ const Shell = ({ children }) => {
   `);
 
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   const tags = data.snippetDataJson.data.reduce((acc, snippet) => {
     if (!snippet.attributes || !snippet.attributes.tags)
@@ -66,11 +68,11 @@ const Shell = ({ children }) => {
         </h1>
       </header>
       <div className="container card-container">
-        <input className={menuOpen ? "col-nav" : ""} type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" />
+        <Search menuOpen={menuOpen} setSearchQuery={setSearchQuery}/>
         <nav className={menuOpen ? "col-nav" : ""}>
           {
             tags.map(tag => ((
-              <MenuTagList tagName={tag} snippets={data.snippetDataJson.data} />
+              <MenuTagList tagName={tag} snippets={data.snippetDataJson.data} searchQuery={searchQuery} />
             )))
           }
         </nav>

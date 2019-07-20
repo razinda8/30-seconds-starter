@@ -1,6 +1,6 @@
 ---
 title: snippetB
-tags: utility, function, helper
+tags: utility, function
 ---
 
 Explain briefly what the snippet does.

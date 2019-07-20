@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 
 import Shell from "../components/Shell";
 import Meta from "../components/Meta";
+import MenuTagList from "../components/MenuTagList";
 
 const capitalize = ([first, ...rest], lowerRest = false) =>
   first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
@@ -29,9 +30,11 @@ const IndexPage = (props) => {
         {/* <input type='search' className='body-search' placeholder='Search for snippets'></input> */}
         {/* <h4>Snippet categories</h4> */}
         <ul className='category-list card'>
-          { tags.map(tag => (
-            <li key={tag}><Link to={`/tags/${tag}`}>{capitalize(tag)}</Link></li>
-          ))}
+          {
+            tags.map(tag => ((
+              <MenuTagList tagName={tag} snippets={snippets} />
+            )))
+          }
         </ul>
       </Shell>
     </>

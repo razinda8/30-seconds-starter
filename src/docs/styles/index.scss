@@ -263,12 +263,13 @@ h1 {
   font-size: 6rem;
   &.landing-title {
     font-size: 3rem;
+    text-align: center;
     & small {
       display: block;
       margin-top: var(#{$universal-margin-var});
       color: var(#{$secondary-fore-color-var});
     }
-    margin-bottom: calc(2 * var(#{$universal-margin-var}));
+    margin-bottom: calc(8 * var(#{$universal-margin-var}));
   }
 }
 h2 {
@@ -651,6 +652,30 @@ h2.category-name {
       }
     }
   }
+  &.category-list {
+    .collapse {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      //background-position: 0rem 1.25rem;
+      background-position: right 0.5rem top 1.5rem;
+      background-repeat: no-repeat;
+      margin-top: var(#{$universal-margin-var});
+      padding-top: var(#{$universal-padding-var});
+      + ul {
+        position: absolute;
+        transform: scaleY(0);    
+        transform-origin: top;
+        transition: transform 0.3s ease;
+      }
+      &.toggled{
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f0f0f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-up'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
+        padding-bottom: calc(0.125 * var(#{$universal-padding-var}));
+        + ul {
+          position: relative;
+          transform: scaleY(1);
+        }
+      }
+    }
+  }
 }
 // ===================================================
 // Toast
@@ -819,6 +844,9 @@ nav {
     }
     + li {
       margin-top: 0;
+    }
+    &.snippet-view-all {
+      border-left: $__1px dotted var(#{$a-link-color-var});
     }
   }
   a {
