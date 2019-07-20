@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby';
 import Shell from "../components/Shell";
 import Meta from "../components/Meta";
 import MenuTagList from "../components/MenuTagList";
+import Search from "../components/Search";
 
 const capitalize = ([first, ...rest], lowerRest = false) =>
   first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
@@ -20,6 +21,8 @@ const IndexPage = (props) => {
     return acc;
   }, []);
 
+  const [searchQuery, setSearchQuery] = React.useState('');
+
   console.log(tags);
 
   return (
@@ -27,15 +30,14 @@ const IndexPage = (props) => {
       <Meta />
       <Shell>
         <h1 className='landing-title'>{site.title}<small>{site.description}</small></h1>
-        {/* <input type='search' className='body-search' placeholder='Search for snippets'></input> */}
-        {/* <h4>Snippet categories</h4> */}
-        <ul className='category-list card'>
+        <div className='category-list card'>
+          <Search className="home-search" setSearchQuery={setSearchQuery}/>
           {
             tags.map(tag => ((
-              <MenuTagList tagName={tag} snippets={snippets} />
+              <MenuTagList tagName={tag} snippets={snippets} searchQuery={searchQuery} />
             )))
           }
-        </ul>
+        </div>
       </Shell>
     </>
   );
@@ -54,6 +56,7 @@ export const indexPageQuery = graphql`
     }
     snippetDataJson(meta: {type: {eq: "snippetListingArray"}}) {
       data {
+        id
         title
         attributes {
           tags

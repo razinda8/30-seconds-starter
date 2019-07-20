@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 
-const Search = ({menuOpen, setSearchQuery}) => {
+const Search = ({menuOpen, setSearchQuery, className=''}) => {
   const [value, setValue] = React.useState('');
 
   React.useEffect(() => {
@@ -9,7 +9,7 @@ const Search = ({menuOpen, setSearchQuery}) => {
   },[value]);
 
   return (
-    <input className={menuOpen ? "col-nav" : ""} type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" onKeyUp={(e) => { setValue(e.target.value); }}/>
+    <input className={className ? className : menuOpen ? "col-nav" : ""} type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" onKeyUp={(e) => { setValue(e.target.value); }}/>
   );
 }
 
