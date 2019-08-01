@@ -3,6 +3,7 @@ const fs = require('fs-extra'),
   { red } = require('kleur'),
   crypto = require('crypto'),
   frontmatter = require('front-matter');
+const config = require('../config');
 const babel = require('@babel/core');
 
 const getMarkDownAnchor = paragraphTitle =>
@@ -110,7 +111,8 @@ const getCodeBlocks = str => {
       results.push(match);
     });
   }
-  results = results.map(v => v.replace(/```js([\s\S]*?)```/g, '$1').trim());
+  const replacer = new RegExp(`\`\`\`${config.language}([\\s\\S]*?)\`\`\``, "g");
+  results = results.map(v => v.replace(replacer, '$1').trim());
   return {
     code: results[0],
     example: results[1]
@@ -129,7 +131,7 @@ const getTextualContent = str => {
       results.push(match);
     });
   }
-  return results[1];
+  return results[1].replace(/\r\n/g,'\n');
 };
 const prepTaggedData = tagDbData =>
   [...new Set(Object.entries(tagDbData).map(t => t[1][0]))]
@@ -144,10 +146,10 @@ const prepTaggedData = tagDbData =>
     );
 const makeExamples = data => {
   data =
-    data.slice(0, data.lastIndexOf('```js')).trim() +
+    data.slice(0, data.lastIndexOf(`\`\`\`${config.language}`)).trim() +
     misc.collapsible(
       'Examples',
-      data.slice(data.lastIndexOf('```js'), data.lastIndexOf('```')) +
+      data.slice(data.lastIndexOf(`\`\`\`${config.language}`), data.lastIndexOf('```')) +
       data.slice(data.lastIndexOf('```'))
     );
   return `${data}\n<br>${misc.link('⬆ Back to top', misc.anchor('Contents'))}\n\n`;

@@ -7,10 +7,11 @@ const fs = require('fs-extra');
 const path = require('path');
 const { green } = require('kleur');
 const util = require('./util');
+const config = require('../config');
 
 // Paths (relative to package.json)
-const SNIPPETS_PATH = './snippets';
-const OUTPUT_PATH = './snippet_data';
+const SNIPPETS_PATH = `./${config.snippetPath}`;
+const OUTPUT_PATH = `./${config.snippetDataPath}`;
 
 // Check if running on Travis, only build for cron jobs and custom builds
 if (

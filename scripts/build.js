@@ -9,10 +9,11 @@ const { green, red } = require('kleur');
 const util = require('./util');
 const markdown = require('markdown-builder');
 const { headers, misc, lists } = markdown;
+const config = require('../config');
 
 // Paths (relative to package.json)
-const SNIPPETS_PATH = './snippets';
-const STATIC_PARTS_PATH = './src/static-parts';
+const SNIPPETS_PATH = `./${config.snippetPath}`;
+const STATIC_PARTS_PATH = `./${config.staticPartsPath}`;
 
 // Terminate if parent commit is a Travis build
 if (util.isTravisCI() && /^Travis build: \d+/g.test(process.env['TRAVIS_COMMIT_MESSAGE'])) {
@@ -27,8 +28,7 @@ let snippets = {},
   snippetsArray = [],
   startPart = '',
   endPart = '',
-  output = '',
-  tagDbData = {};
+  output = '';
 const EMOJIS = {};
 
 console.time('Builder');
@@ -91,11 +91,11 @@ try {
 
       output += snippet.attributes.text;
 
-      output += '```js\n' + snippet.attributes.codeBlocks.code+'\n```';
+      output += `\`\`\`${config.language}\n${snippet.attributes.codeBlocks.code}\n\`\`\``;
 
       output += misc.collapsible(
         'Examples',
-        '```js\n' + snippet.attributes.codeBlocks.examples + '\n```'
+        `\`\`\`${config.language}\n${snippet.attributes.codeBlocks.examples}\n\`\`\``
       );
 
       output += '\n<br>' + misc.link('⬆ Back to top', misc.anchor('Contents')) + '\n';
