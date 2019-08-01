@@ -1,7 +1,9 @@
+import config from './config';
+
 module.exports = {
   siteMetadata: {
-    title: `30 seconds starter`,
-    description: `Kick off your next, great 30 seconds project with this starter.`,
+    title: `${config.name}`,
+    description: `${config.description}`,
     author: `@30-seconds`,
   },
   plugins: [
@@ -9,27 +11,27 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `snippets`,
-        path: `${__dirname}/snippets`,
+        path: `${__dirname}/${config.snippetPath}`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `snippet_data`,
-        path: `${__dirname}/snippet_data`,
+        path: `${__dirname}/${config.snippetDataPath}`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `assets`,
-        path: `${__dirname}/assets`,
+        path: `${__dirname}/${config.assetPath}`,
       },
     },
     {
       resolve: `gatsby-plugin-page-creator`,
       options: {
-        path: `${__dirname}/src/docs/pages`,
+        path: `${__dirname}/${config.pagePath}`,
       },
     },
     {
@@ -54,8 +56,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `30-seconds-starter`,
-        short_name: `30s`,
+        name: `${config.name}`,
+        short_name: `${config.shortName}`,
         start_url: `/`,
         background_color: `#111`,
         theme_color: `#111`,
