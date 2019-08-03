@@ -1,0 +1,71 @@
+:root {
+  // Interface color palette
+  --fore-color: #212121;
+  --secondary-fore-color: #424242;
+  --back-color: #fff;
+  --secondary-back-color: #f5f5f5;
+  --border-color: #eee;
+
+  // Link color palette
+  --a-link-color: #0277bd;
+  --a-visited-color: #01579b;
+
+  // Code color palette
+  --code-fore-color: #8e24aa;
+  --code-back-color: #f0f0f0;
+  --code-selected-color: #37474f;
+
+  // Pre color palette
+  --pre-fore-color: #e57373;
+  --pre-back-color: #263238;
+
+  // Token color palette
+  --token-color-a: #7f99a5;   // Comments
+  --token-color-b: #bdbdbd;   // Punctuation
+  --token-color-c: #64b5f6;   // Functions
+  --token-color-d: #ff8f00;   // Numbers
+  --token-color-e: #c5e1a5;   // Strings
+  --token-color-f: #ce93d8;   // Keywords
+  --token-color-g: #26c6da;   // Regular expressions
+  --token-color-h: #e57373;   // Variables
+
+  // Copy button palette
+  --copy-button-color: #1e88e5;
+  --copy-button-hover-color: #2196f3;
+
+  // Card color palette
+  --card-page-color: #eee;
+
+  // Card corner palette
+  --beginner-color: #7cb342;
+  --intermediate-color: #ffb300;
+  --advanced-color: #e53935;
+
+  // Scroll to top button palette
+  --scrolltop-button-color: #26a69a;
+  --scrolltop-button-hover-color: #4db6ac;
+
+  // Header color palette
+  --header-fore-color: #fff;
+  --header-back-color: #202124;
+
+  // Navigation menu color palette
+  --nav-fore-color: #f0f0f0;
+  --nav-back-color: #202124;
+  --nav-link-fore-color: #e0e0e0;
+  --nav-link-border-color: #455a64;
+  --nav-link-hover-color: #2b2c30;
+
+  // Footer color palette
+  --footer-fore-color: #616161;
+  --footer-back-color: #e0e0e0;
+
+  // Search color palette
+  --search-fore-color: #fafafa;
+  --search-back-color: #111;
+  --search-border-color: #9e9e9e;
+  --search-hover-border-color: #26a69a;
+
+  // Collapse color palette
+  --collapse-color: #607d8b;
+}
