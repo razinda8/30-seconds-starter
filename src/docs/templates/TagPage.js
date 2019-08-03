@@ -5,35 +5,11 @@ import Meta from '../components/Meta';
 import Shell from '../components/Shell';
 import SnippetCard from '../components/SnippetCard';
 
-const getCodeBlocks = str => {
-  const regex = /```[.\S\s]*?```/g;
-  let results = [];
-  let m = null;
-  while ((m = regex.exec(str)) !== null) {
-    if (m.index === regex.lastIndex)
-      regex.lastIndex += 1;
-
-    m.forEach((match, groupIndex) => {
-      results.push(match);
-    });
-  }
-  results = results.map(v => v.replace(/```js([\s\S]*?)```/g, '$1').trim());
-  return {
-    code: results[0],
-    example: results[1]
-  };
-};
-
-const capitalize = ([first, ...rest], lowerRest = false) =>
-  first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
+import { capitalize, getRawCodeBlocks as getCodeBlocks} from '../util';
 
 const TagRoute = (props) => {
   const posts = props.data.allMarkdownRemark.edges;
   const tag = props.pageContext.tag;
-  const totalCount = props.data.allMarkdownRemark.totalCount;
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? '' : 's'
-    } tagged in “${tag}”`;
 
   return (
     <>

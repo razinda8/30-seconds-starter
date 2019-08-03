@@ -11,8 +11,8 @@ const toKebabCase = str =>
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/docs/templates/snippet_page.js`);
-  const tagPage = path.resolve(`./src/docs/templates/tag_page.js`);
+  const snippetPage = path.resolve(`./src/docs/templates/SnippetPage.js`);
+  const tagPage = path.resolve(`./src/docs/templates/TagPage.js`);
   return graphql(
     `
       {
@@ -39,15 +39,15 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create individual snippet pages.
-    const posts = result.data.allMarkdownRemark.edges;
+    const snippets = result.data.allMarkdownRemark.edges;
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
+    snippets.forEach((post, index) => {
+      const previous = index === snippets.length - 1 ? null : snippets[index + 1].node;
+      const next = index === 0 ? null : snippets[index - 1].node;
 
       createPage({
         path: post.node.fields.slug,
-        component: blogPost,
+        component: snippetPage,
         context: {
           slug: post.node.fields.slug,
           previous,
@@ -57,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
 
     // Create tag pages.
-    const tags = posts.reduce((acc,post) => {
+    const tags = snippets.reduce((acc,post) => {
       if(!post.node.frontmatter || !post.node.frontmatter.tags)
         return acc;
       const primaryTag = post.node.frontmatter.tags.split(',')[0];
@@ -69,7 +69,6 @@ exports.createPages = ({ graphql, actions }) => {
     tags.forEach(tag => {
       const tagPath = `/tags/${toKebabCase(tag)}/`;
       const tagRegex = `/^\\s*${tag}/`;
-      console.log(tagPath);
       createPage({
         path: tagPath,
         component: tagPage,

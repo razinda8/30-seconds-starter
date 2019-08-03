@@ -4,9 +4,6 @@ import { graphql, useStaticQuery, Link } from "gatsby";
 import MenuTagList from './MenuTagList';
 import Search from "./Search";
 
-const capitalize = ([first, ...rest], lowerRest = false) =>
-  first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
-
 const Shell = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -94,7 +91,8 @@ const Shell = ({ children }) => {
             </p>
         </div>
       </footer>
-      <a className="scroll-to-top" href="#top"></a>
+      {/* eslint-disable-next-line */}
+      <a className="scroll-to-top" href="#top" aria-label="Scroll to top"></a>
       </div>
     </>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { graphql, useStaticQuery, Link } from "gatsby";
 
 const Search = ({menuOpen, setSearchQuery, className=''}) => {
   const [value, setValue] = React.useState('');

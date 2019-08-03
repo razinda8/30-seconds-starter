@@ -1,8 +1,7 @@
 import React from "react";
-import { graphql, useStaticQuery, Link } from "gatsby";
+import { Link } from "gatsby";
 
-const capitalize = ([first, ...rest], lowerRest = false) =>
-  first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
+import { capitalize } from '../util';
 
 const MenuTagList = ({tagName, snippets, isOpen = false, searchQuery=''}) => {
   const [_isOpen, _setIsOpen] = React.useState(isOpen);

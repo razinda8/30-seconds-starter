@@ -1,13 +1,10 @@
 import React from "react";
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Shell from "../components/Shell";
 import Meta from "../components/Meta";
 import MenuTagList from "../components/MenuTagList";
 import Search from "../components/Search";
-
-const capitalize = ([first, ...rest], lowerRest = false) =>
-  first.toUpperCase() + (lowerRest ? rest.join('').toLowerCase() : rest.join(''));
 
 const IndexPage = (props) => {
   const snippets = props.data.snippetDataJson.data;
@@ -22,8 +19,6 @@ const IndexPage = (props) => {
   }, []);
 
   const [searchQuery, setSearchQuery] = React.useState('');
-
-  console.log(tags);
 
   return (
     <>
