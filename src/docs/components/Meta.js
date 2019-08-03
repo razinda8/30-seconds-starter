@@ -67,8 +67,7 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
       ].concat(meta)}
       bodyAttributes={{
         class: 'card-page'
-      }}
-    />
+      }}/>
   );
 }
 
