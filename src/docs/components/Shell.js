@@ -80,7 +80,7 @@ const Shell = ({ children }) => {
         <footer className="col-full-width container">
           <div className="col-centered">
             <p style={{display: 'inline-block'}}>
-              <strong>30 seconds starter</strong> is licensed under the <a href="https://github.com/30-seconds/30-seconds-starter/blob/master/LICENSE">MIT</a> license.<br />Logos made by <a href="https://github.com/Chalarangelo">Angelos Chalaris</a> and ribbon made by <a href="https://github.com/tholman/github-corners">Tim Holman</a> are licensed under the <a href="https://opensource.org/licenses/MIT">MIT</a> license.
+              <strong>30 seconds starter</strong> is licensed under the <a href="https://github.com/30-seconds/30-seconds-starter/blob/master/LICENSE">CC0-1.0</a> license.<br />Logos made by <a href="https://github.com/Chalarangelo">Angelos Chalaris</a> and ribbon made by <a href="https://github.com/tholman/github-corners">Tim Holman</a> are licensed under the <a href="https://opensource.org/licenses/MIT">MIT</a> license.
             </p>
             <br />
             <p style={{display: 'inline-block'}}>

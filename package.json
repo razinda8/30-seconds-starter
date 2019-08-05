@@ -1,7 +1,7 @@
 {
   "name": "30-seconds-starter",
   "private": true,
-  "description": "A simple starter repository for 30-seconds projects. ",
+  "description": "A simple starter repository for 30-seconds projects.",
   "version": "1.0.0",
   "author": "30-seconds",
   "dependencies": {
@@ -48,7 +48,7 @@
     "30-seconds",
     "snippets"
   ],
-  "license": "MIT",
+  "license": "CC0-1.0",
   "scripts": {
     "builder": "node ./scripts/build.js",
     "webber": "gatsby build",
