@@ -2,53 +2,78 @@
 // Layout
 // ===================================================
 // Grid container
-.container {
+.page-container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-column-gap: calc(0.5 * var(--universal-margin));
-  width: 100%;
-  &.card-container {
-    position: absolute;
-    padding-top: 3.5rem; 
-    min-height: calc(100vh - 3.5rem);
+  width: 100vw;
+  height: 100vh;
+  grid-template-areas: "content" "menu";
+  grid-template-columns: 100%;
+  grid-template-rows: calc(100vh - 62px) 62px;
+  @media screen and (min-width: 600px) {
   }
 }
-// Generic centered column
-.col-centered {
-  grid-column: span 12;
-  max-width: 100%;
-  @media screen and (min-width: #{$grid-medium-breakpoint}) {
-    grid-column: 2/12;
-  }
-  @media screen and (min-width: #{$grid-large-breakpoint}) {
-    grid-column: 3/11;
-  }
+// Menu container
+header.menu {
+  grid-area: menu;
+  border-top: 1px solid #E4E6EC;
+  background: #FFFFFF;
 }
-// 25% width - For the 'in numbers' section
-.col-quarter {
-  grid-column: span 3;
+
+// Content container
+.content {
+  grid-area: content;
+  overflow: auto;
+  background: #F5F6FA;
 }
-// 100% width
-.col-full-width {
-  grid-column: span 12;
-}
-// For the contributors section
-.flex-row {
-  display: flex;
-  flex: 0 1 auto;
-  flex-flow: row wrap;
-  .flex-item {
-    flex: 0 0 auto;
-    max-width: 50%;
-    flex-basis: 50%;
-    @media screen and (min-width: #{$grid-medium-breakpoint}) {
-      max-width: 25%;
-      flex-basis: 25%;
-    }
-    @media screen and (min-width: #{$grid-large-breakpoint}) {
-      max-width: 100%;
-      flex-grow: 1;
-      flex-basis: 0;
-    }
-  }
-}
+
+
+// .container {
+//   display: grid;
+//   grid-template-columns: repeat(12, 1fr);
+//   grid-column-gap: calc(0.5 * var(--universal-margin));
+//   width: 100%;
+//   &.card-container {
+//     position: absolute;
+//     padding-top: 3.5rem; 
+//     min-height: calc(100vh - 3.5rem);
+//   }
+// }
+// // Generic centered column
+// .col-centered {
+//   grid-column: span 12;
+//   max-width: 100%;
+//   @media screen and (min-width: #{$grid-medium-breakpoint}) {
+//     grid-column: 2/12;
+//   }
+//   @media screen and (min-width: #{$grid-large-breakpoint}) {
+//     grid-column: 3/11;
+//   }
+// }
+// // 25% width - For the 'in numbers' section
+// .col-quarter {
+//   grid-column: span 3;
+// }
+// // 100% width
+// .col-full-width {
+//   grid-column: span 12;
+// }
+// // For the contributors section
+// .flex-row {
+//   display: flex;
+//   flex: 0 1 auto;
+//   flex-flow: row wrap;
+//   .flex-item {
+//     flex: 0 0 auto;
+//     max-width: 50%;
+//     flex-basis: 50%;
+//     @media screen and (min-width: #{$grid-medium-breakpoint}) {
+//       max-width: 25%;
+//       flex-basis: 25%;
+//     }
+//     @media screen and (min-width: #{$grid-large-breakpoint}) {
+//       max-width: 100%;
+//       flex-grow: 1;
+//       flex-basis: 0;
+//     }
+//   }
+// }
