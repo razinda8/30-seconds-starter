@@ -1,8 +1,19 @@
 // ===================================================
 // Menu
 // ===================================================
-// Menu buttons
-.menu{
+.menu {
+  // Menu container
+  border-top: 1px solid #E4E6EC;
+  background: #FFFFFF;
+  @media screen and (min-width: 600px) {
+    border-top: none;
+    border-right: 1px solid #E4E6EC;
+    padding-top: 19vh;
+  }
+  @media screen and (min-width: 900px) {
+    padding-top: 23.5vh;
+  }
+  // Menu buttons
   .button {
     margin: 0;
     width: 25%;
@@ -15,5 +26,13 @@
     background: #fff;
     border: none;
     line-height: 61px;
+    @media screen and (min-width: 600px) {
+      height: 12.5vh;
+      width: 100%;
+      margin-bottom: 4vh;
+    }
+    @media screen and (min-width: 900px) {
+      margin-bottom: 1vh;
+    }
   }
 }
