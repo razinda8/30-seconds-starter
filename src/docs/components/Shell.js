@@ -1,5 +1,8 @@
 import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
+import { connect } from 'react-redux';
+
+import { toggleDarkMode } from '../state/app';
 
 import MenuTagList from './MenuTagList';
 import Search from "./Search";
@@ -10,7 +13,7 @@ import DarkModeIcon from "./SVGs/DarkModeIcon";
 import LightModeIcon from "./SVGs/LightModeIcon";
 import ListIcon from "./SVGs/ListIcon";
 
-const Shell = ({ children }) => {
+const Shell = ({ isDarkMode, dispatch, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -65,7 +68,13 @@ const Shell = ({ children }) => {
         <SearchIcon className='button' />
         <ListIcon className='button' />
         <GithubIcon className='button' />
-        <DarkModeIcon className='button' />
+        {
+          isDarkMode ? 
+            <LightModeIcon className='button' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
+          :
+            <DarkModeIcon className='button' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
+        }
+        
         {/* <h1 className="logo">
           <Link to="/">
             <img src={data.file.childImageSharp.original.src} alt="logo" />
@@ -146,4 +155,6 @@ const Shell = ({ children }) => {
   );
 };
 
-export default Shell;
+export default connect(state => ({
+  isDarkMode: state.app.isDarkMode
+}), null)(Shell);
