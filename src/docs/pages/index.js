@@ -20,11 +20,17 @@ const IndexPage = (props) => {
 
   const [searchQuery, setSearchQuery] = React.useState('');
 
+  const updateSearchQuery = (query) => {
+    console.log(query);
+    setSearchQuery(query);
+  };
+
   return (
     <>
       <Meta />
-      <Shell>
-        <h1 className='landing-title'>{site.title}<small>{site.description}</small></h1>
+      <Shell withIcon={false}>
+        <Search setSearchQuery={setSearchQuery}/>
+        {/* <h1 className='landing-title'>{site.title}<small>{site.description}</small></h1>
         <div className='category-list card'>
           <Search className="home-search" setSearchQuery={setSearchQuery}/>
           {
@@ -32,7 +38,7 @@ const IndexPage = (props) => {
               <MenuTagList tagName={tag} snippets={snippets} searchQuery={searchQuery} />
             )))
           }
-        </div>
+        </div> */}
       </Shell>
     </>
   );

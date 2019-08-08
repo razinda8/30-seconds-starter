@@ -8,7 +8,7 @@ const Search = ({menuOpen, setSearchQuery, className=''}) => {
   },[value]);
 
   return (
-    <input className={className ? className : menuOpen ? "col-nav" : ""} type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" onKeyUp={(e) => { setValue(e.target.value); }}/>
+    <input className='search-box' type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" onKeyUp={(e) => { setValue(e.target.value); }}/>
   );
 }
 
