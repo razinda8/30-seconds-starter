@@ -1,25 +1,49 @@
 :root {
   // Interface color palette
-  --fore-color: #212121;
-  --secondary-fore-color: #424242;
-  --back-color: #fff;
-  --secondary-back-color: #f5f5f5;
-  --border-color: #eee;
+  --back-color: #F5F6FA;
+  --back-color-dark: #D7DDF3;
+  --fore-color: #404454;
+  --fore-color-light: #575E7A;
+  --fore-color-lighter: #666E8F;
+  --fore-color-dark: #1F253D;
+  --fore-color-darker: #060709;
+  
+  // Menu color palette
+  --menu-back-color: #FFFFFF;
+  --menu-border-color: #E4E6EC;
+  --menu-fore-color: #53586A;
+  --menu-active-fore-color: #2747C7;
 
-  // Link color palette
+  // Card corner palette
+  --beginner-color: #7CB342;
+  --intermediate-color: #FFB300;
+  --advanced-color: #D66361;
+
+  // Search color palette
+  --search-back-color: #FFFFFF;
+  --search-fore-color: #0D0E17;
+  --search-placeholder-color: #C5C6CD;
+  --search-shadow-color: rgba(0, 32, 128, 0.1);
+  --search-shadow-focus-color: rgba(0, 32, 128, 0.17);
+
+
+
+
+
+  // Link color palette - TODO
   --a-link-color: #0277bd;
   --a-visited-color: #01579b;
 
-  // Code color palette
+  // Code color palette - TODO
   --code-fore-color: #8e24aa;
   --code-back-color: #f0f0f0;
   --code-selected-color: #37474f;
 
-  // Pre color palette
+  // Pre color palette - TODO
   --pre-fore-color: #e57373;
   --pre-back-color: #263238;
 
-  // Token color palette
+  // Token color palette - TODO
   --token-color-a: #7f99a5;   // Comments
   --token-color-b: #bdbdbd;   // Punctuation
   --token-color-c: #64b5f6;   // Functions
@@ -36,36 +60,34 @@
   // Card color palette
   --card-page-color: #eee;
 
-  // Card corner palette
-  --beginner-color: #7cb342;
-  --intermediate-color: #ffb300;
-  --advanced-color: #e53935;
-
-  // Scroll to top button palette
-  --scrolltop-button-color: #26a69a;
-  --scrolltop-button-hover-color: #4db6ac;
-
-  // Header color palette
-  --header-fore-color: #fff;
-  --header-back-color: #202124;
-
-  // Navigation menu color palette
-  --nav-fore-color: #f0f0f0;
-  --nav-back-color: #202124;
-  --nav-link-fore-color: #e0e0e0;
-  --nav-link-border-color: #455a64;
-  --nav-link-hover-color: #2b2c30;
-
-  // Footer color palette
-  --footer-fore-color: #616161;
-  --footer-back-color: #e0e0e0;
-
-  // Search color palette
-  --search-fore-color: #fafafa;
-  --search-back-color: #111;
-  --search-border-color: #9e9e9e;
-  --search-hover-border-color: #26a69a;
 
   // Collapse color palette
   --collapse-color: #607d8b;
+}
+
+// Dark mode colors
+.page-container.dark {
+  // Interface color palette
+  --back-color: #2A314C;
+  --back-color-dark: #8993BE;
+  --fore-color: #ABAFBF;
+  --fore-color-light: #858CA8;
+  --fore-color-lighter: #707899;
+  --fore-color-dark: #B4BCD9;
+  --fore-color-darker: #FCFCFD;
+  
+  // Menu color palette
+  --menu-back-color: #434E76;
+  --menu-border-color: #13151B;
+  --menu-fore-color: #959AAC;
+  --menu-active-fore-color: #CDD4EF;
+
+  // Card corner palette remains unchanged for consistency
+
+  // Search color palette
+  --search-back-color: #434E76;
+  --search-fore-color: #E8E9F2;
+  --search-placeholder-color: #999EBD;
+  --search-shadow-color: rgba(1, 8, 30, 0.24);
+  --search-shadow-focus-color: rgba(1, 8, 30, 0.31);
 }

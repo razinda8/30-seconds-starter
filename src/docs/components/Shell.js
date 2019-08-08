@@ -59,7 +59,7 @@ const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
   }, []);
   
   return (
-    <div className="page-container">
+    <div className={isDarkMode ? "page-container dark" : "page-container"}>
       {/* Menu */}
       <header className="menu">
         <AniLink cover direction={viewportWidth < 600 ? "up" : "right"} to="/search" bg="#ffffff" aria-label="Search" className='button'>

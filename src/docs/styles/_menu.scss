@@ -2,37 +2,45 @@
 // Menu
 // ===================================================
 .menu {
+  transition: 0.3s ease all;
   // Menu container
-  border-top: 1px solid #E4E6EC;
-  background: #FFFFFF;
-  @media screen and (min-width: 600px) {
+  background: var(--menu-back-color);
+  border-top: 1px solid var(--menu-border-color);
+  @media screen and (min-width: $layout-medium-breakpoint) {
     border-top: none;
-    border-right: 1px solid #E4E6EC;
+    border-right: 1px solid var(--menu-border-color);
     padding-top: 19vh;
   }
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: $layout-large-breakpoint) {
     padding-top: 23.5vh;
   }
   // Menu buttons
   .button {
-    margin: 0;
+    transition: 0.3s ease all;
+    background: var(--menu-back-color);
+    color: var(--menu-fore-color);
+    display: inline-block;
     width: 25%;
     height: 61px;
-    display: block;
+    margin: 0;
     text-align: center;
     padding-top: 8px;
-    color: #53586A;
-    display: inline-block;
-    background: #fff;
     border: none;
     line-height: 61px;
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $layout-medium-breakpoint) {
       height: 12.5vh;
       width: 100%;
       margin-bottom: 4vh;
     }
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: $layout-large-breakpoint) {
       margin-bottom: 1vh;
+    }
+    &:hover, &:focus {
+      outline: 0;
+      color: var(--menu-active-fore-color);
+    }
+    &.active {
+      color: var(--menu-active-fore-color);
     }
   }
 }

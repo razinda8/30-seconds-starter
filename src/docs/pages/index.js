@@ -30,6 +30,7 @@ const IndexPage = (props) => {
       <Meta />
       <Shell withIcon={false}>
         <Search setSearchQuery={setSearchQuery}/>
+        <p className='light-sub'>Click on a snippet's name to view its code.</p>
         {/* <h1 className='landing-title'>{site.title}<small>{site.description}</small></h1>
         <div className='category-list card'>
           <Search className="home-search" setSearchQuery={setSearchQuery}/>
