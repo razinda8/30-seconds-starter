@@ -62,20 +62,26 @@ const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
     <div className={isDarkMode ? "page-container dark" : "page-container"}>
       {/* Menu */}
       <header className="menu">
-        <AniLink cover direction={viewportWidth < 600 ? "up" : "right"} to="/search" bg="#ffffff" aria-label="Search" className='button'>
+        <AniLink 
+          cover direction={viewportWidth < 600 ? "up" : "right"} bg={isDarkMode ? "#434E76" : "#FFFFFF"}
+          to="/" aria-label="Search" className='button'>
         <SearchIcon />
         </AniLink>
-        <ListIcon className='button' />
+        <AniLink
+          cover direction={viewportWidth < 600 ? "up" : "right"} bg={isDarkMode ? "#434E76" : "#FFFFFF"}
+          to="/list" aria-label="Snippet list" className='button'>
+          <ListIcon />
+        </AniLink>
         <a href={config.repositoryUrl} rel="noopener" target="_blank" aria-label="View on GitHub" className='button'>
-        <GithubIcon />
+          <GithubIcon />
         </a>
-        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300} component ='button' className='button' childComponent={React.Fragment}>
-        {
-          isDarkMode ? 
-          <LightModeIcon key='lmit' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
-          :
-          <DarkModeIcon key='dmit' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
-        }
+        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300} component ='a' className='button' childComponent={React.Fragment}>
+          {
+            isDarkMode ? 
+            <LightModeIcon key='lmit' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
+            :
+            <DarkModeIcon key='dmit' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
+          }
         </ReactCSSTransitionReplace>
       </header>
       {/* Content */}

@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from 'gatsby';
+import { connect } from 'react-redux';
 
 import Shell from "../components/Shell";
 import Meta from "../components/Meta";
@@ -7,6 +8,7 @@ import MenuTagList from "../components/MenuTagList";
 import Search from "../components/Search";
 
 const IndexPage = (props) => {
+  console.log(props);
   const snippets = props.data.snippetDataJson.data;
   const site = props.data.site.siteMetadata;
   const tags = snippets.reduce((acc, snippet) => {
@@ -29,23 +31,27 @@ const IndexPage = (props) => {
     <>
       <Meta />
       <Shell withIcon={false}>
-        <Search setSearchQuery={setSearchQuery}/>
+        <Search setSearchQuery={updateSearchQuery}/>
         <p className='light-sub'>Click on a snippet's name to view its code.</p>
-        {/* <h1 className='landing-title'>{site.title}<small>{site.description}</small></h1>
-        <div className='category-list card'>
-          <Search className="home-search" setSearchQuery={setSearchQuery}/>
-          {
-            tags.map(tag => ((
-              <MenuTagList tagName={tag} snippets={snippets} searchQuery={searchQuery} />
-            )))
-          }
-        </div> */}
+        {
+          searchQuery.length === 0 ? 
+          <>
+            <div className='page-graphic search-empty'>
+              <p className='empty-page-text'>Start typing a keyword to see matching snippets.</p>
+            </div>
+          </>
+          : <p>Got something!</p>
+        }
       </Shell>
     </>
   );
 }
 
-export default IndexPage;
+export default connect(state => ({
+  isDarkMode: state.app.isDarkMode
+}), null)(IndexPage);
+
+// export default IndexPage;
 
 export const indexPageQuery = graphql`
   query snippetList {
