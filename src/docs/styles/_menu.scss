@@ -16,7 +16,7 @@
     padding-top: 23.5vh;
   }
   // Menu buttons
-  .button {
+  .menu-button {
     transition: 0.3s ease all;
     background: var(--menu-back-color);
     color: var(--menu-fore-color);
@@ -43,6 +43,12 @@
     }
     &.active {
       color: var(--menu-active-fore-color);
+      svg {
+        color: var(--menu-active-fore-color);
+      }
+    }
+    svg {
+      color: var(--menu-fore-color);
     }
   }
 }

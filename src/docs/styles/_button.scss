@@ -1,0 +1,26 @@
+.button, a.button {
+  color: var(--button-fore-color);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.4;
+  transition: 0.3s ease all;
+  padding: 10px 14px;
+  margin-top: 12px;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0px 4px 8px var(--button-shadow-color);
+  &:hover, &:focus {
+    box-shadow: 0px 6px 12px var(--button-shadow-color);
+    text-decoration: none;
+    outline: none;
+  }
+  &.button-a {
+    background: var(--button-back-color-a);
+  }
+  &.button-b {
+    background: var(--button-back-color-b);
+  }
+  svg {
+    vertical-align: sub;
+  }
+}

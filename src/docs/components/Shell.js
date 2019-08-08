@@ -64,18 +64,18 @@ const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
       <header className="menu">
         <AniLink 
           cover direction={viewportWidth < 600 ? "up" : "right"} bg={isDarkMode ? "#434E76" : "#FFFFFF"}
-          to="/" aria-label="Search" className='button'>
+          to="/" aria-label="Search" className='menu-button'>
         <SearchIcon />
         </AniLink>
         <AniLink
           cover direction={viewportWidth < 600 ? "up" : "right"} bg={isDarkMode ? "#434E76" : "#FFFFFF"}
-          to="/list" aria-label="Snippet list" className='button'>
+          to="/list" aria-label="Snippet list" className='menu-button'>
           <ListIcon />
         </AniLink>
-        <a href={config.repositoryUrl} rel="noopener" target="_blank" aria-label="View on GitHub" className='button'>
+        <a href={config.repositoryUrl} rel="noopener" target="_blank" aria-label="View on GitHub" className='menu-button'>
           <GithubIcon />
         </a>
-        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300} component ='button' className='button' childComponent={React.Fragment}>
+        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300} component ='button' className='menu-button' childComponent={React.Fragment}>
           {
             isDarkMode ? 
             <LightModeIcon key='lmit' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />

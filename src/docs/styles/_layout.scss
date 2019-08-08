@@ -63,6 +63,15 @@ p.light-sub {
   margin: 4px 20px 0px;
 }
 
+.page-title {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.36;
+  letter-spacing: 0.03em;
+  color: var(--fore-color-darker);
+  margin: 0 20px;
+}
+
 // Page graphic
 .page-graphic {
   transition: all 0.3s ease;
@@ -85,11 +94,27 @@ p.light-sub {
 .empty-page-text {
   transition: all 0.3s ease;
   text-align: center;
-  margin: 36px auto;
+  margin: 36px auto 12px;
   max-width: 200px;
   line-height: 1.5;
   color: var(--fore-color-darker);
   font-weight: 400;
+  @media screen and (min-width: $layout-medium-breakpoint) {
+    max-width: 400px;
+  }
+  strong {
+    font-weight: 600;
+  }
+}
+.empty-page-subtext {
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 200px;
+  color: var(--fore-color-darker);
+  margin: 8px auto;
   @media screen and (min-width: $layout-medium-breakpoint) {
     max-width: 400px;
   }
