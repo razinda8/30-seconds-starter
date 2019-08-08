@@ -36,7 +36,7 @@ const IndexPage = (props) => {
         {
           searchQuery.length === 0 ? 
           <>
-            <div className='page-graphic search-empty'>
+            <div className='page-graphic search-no-results'>
               <p className='empty-page-text'>Start typing a keyword to see matching snippets.</p>
             </div>
           </>
@@ -50,8 +50,6 @@ const IndexPage = (props) => {
 export default connect(state => ({
   isDarkMode: state.app.isDarkMode
 }), null)(IndexPage);
-
-// export default IndexPage;
 
 export const indexPageQuery = graphql`
   query snippetList {

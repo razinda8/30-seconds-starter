@@ -75,7 +75,7 @@ const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
         <a href={config.repositoryUrl} rel="noopener" target="_blank" aria-label="View on GitHub" className='button'>
           <GithubIcon />
         </a>
-        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300} component ='a' className='button' childComponent={React.Fragment}>
+        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300} component ='button' className='button' childComponent={React.Fragment}>
           {
             isDarkMode ? 
             <LightModeIcon key='lmit' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />

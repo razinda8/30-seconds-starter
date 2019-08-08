@@ -10,7 +10,7 @@
   @media screen and (min-width: $layout-medium-breakpoint) {
     border-top: none;
     border-right: 1px solid var(--menu-border-color);
-    padding-top: 19vh;
+    padding-top: 17vh;
   }
   @media screen and (min-width: $layout-large-breakpoint) {
     padding-top: 23.5vh;
@@ -25,12 +25,13 @@
     height: 61px;
     margin: 0;
     text-align: center;
-    padding-top: 8px;
+    margin-top: 8px;
     border: none;
     line-height: 61px;
     @media screen and (min-width: $layout-medium-breakpoint) {
       height: 12.5vh;
       width: 100%;
+      margin-top: 1vh;
       margin-bottom: 4vh;
     }
     @media screen and (min-width: $layout-large-breakpoint) {
