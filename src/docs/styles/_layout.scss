@@ -3,6 +3,7 @@
 // ===================================================
 // Grid container
 .page-container {
+  background: var(--back-color);
   display: grid;
   width: 100vw;
   height: 100vh;
@@ -17,7 +18,8 @@
   }
   // Large screen size (desktop, laptop)
   @media screen and (min-width: $layout-large-breakpoint) {
-
+    grid-template-areas: "menu . content .";
+    grid-template-columns: 62px calc((100vw - 830px) / 2) 768px calc((100vw - 830px) / 2);
   }
 }
 // Menu container
@@ -52,6 +54,9 @@ img.website-logo {
   right: 20px;
   width: 48px;
   height: 48px;
+  @media screen and (min-width: $layout-large-breakpoint) {
+    right: calc((100vw - 830px) / 2 + 20px);
+  }
 }
 
 // Page light subtitle
