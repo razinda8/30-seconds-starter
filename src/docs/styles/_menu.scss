@@ -36,3 +36,24 @@
     }
   }
 }
+
+// Animate transition between light and dark mode
+.cross-fade-leave svg {
+  transform: scale(1);
+}
+.cross-fade-leave.cross-fade-leave-active svg {
+  transition: all 0.3s cubic-bezier(0.47, 0, 0.745, 0.715);
+  transform: scale(0.1);
+}
+
+.cross-fade-enter svg {
+  transform: scale(0.1);
+}
+.cross-fade-enter.cross-fade-enter-active svg {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(0.95);
+}
+
+.cross-fade-height svg {
+  transition: height 0.15s ease-in-out;
+}

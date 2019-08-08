@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import { connect } from 'react-redux';
+import ReactCSSTransitionReplace from 'react-css-transition-replace';
 
 import { toggleDarkMode } from '../state/app';
 
@@ -68,13 +69,14 @@ const Shell = ({ isDarkMode, dispatch, children }) => {
         <SearchIcon className='button' />
         <ListIcon className='button' />
         <GithubIcon className='button' />
+        <ReactCSSTransitionReplace transitionName="cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
         {
           isDarkMode ? 
-            <LightModeIcon className='button' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
+            <LightModeIcon key='lmit' className='button' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
           :
-            <DarkModeIcon className='button' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
+            <DarkModeIcon key='dmit' className='button' onClick={() => dispatch(toggleDarkMode(!isDarkMode))} />
         }
-        
+        </ReactCSSTransitionReplace>
         {/* <h1 className="logo">
           <Link to="/">
             <img src={data.file.childImageSharp.original.src} alt="logo" />
