@@ -86,8 +86,9 @@ const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
       </header>
       {/* Content */}
       <div className='content'>
-        <h1 className='website-title'>{data.site.siteMetadata.title}</h1>
+        <h1 className='website-title'>{data.site.siteMetadata.title}
         {withIcon ? <img src={data.file.childImageSharp.original.src} alt="Logo" className='website-logo'/>: ''}
+        </h1>
         {children}
       </div>
     </div>
