@@ -9,6 +9,8 @@ import Meta from "../components/Meta";
 import Search from "../components/Search";
 import SnippetCard from "../components/SnippetCard";
 
+import { getRawCodeBlocks as getCodeBlocks } from '../util';
+
 const IndexPage = (props) => {
   console.log(props);
   const snippets = props.data.snippetDataJson.data.map(snippet => ({
@@ -16,7 +18,8 @@ const IndexPage = (props) => {
     html: props.data.allMarkdownRemark.edges.find(v => v.node.frontmatter.title === snippet.title).node.html,
     tags: snippet.attributes.tags,
     text: snippet.attributes.text,
-    id: snippet.id
+    id: snippet.id,
+    code: getCodeBlocks(props.data.allMarkdownRemark.edges.find(v => v.node.frontmatter.title === snippet.title).node.rawMarkdownBody).code,
   }));
   const site = props.data.site.siteMetadata;
   const tags = snippets.reduce((acc, snippet) => {
@@ -65,7 +68,7 @@ const IndexPage = (props) => {
   return (
     <>
       <Meta />
-      <Shell withIcon={false}>
+      <Shell withIcon={false} isSearch>
         <Search setSearchQuery={setSearchQuery} defaultValue={props.searchQuery}/>
         <p className='light-sub'>Click on a snippet's name to view its code.</p>
         {
@@ -130,6 +133,7 @@ export const indexPageQuery = graphql`
         node {
           id
           html
+          rawMarkdownBody
           fields {
             slug
           }

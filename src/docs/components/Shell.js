@@ -14,7 +14,7 @@ import DarkModeIcon from "./SVGs/DarkModeIcon";
 import LightModeIcon from "./SVGs/LightModeIcon";
 import ListIcon from "./SVGs/ListIcon";
 
-const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
+const Shell = ({ isDarkMode, isSearch, isList, dispatch, withIcon = true, children }) => {
   const data = useStaticQuery(graphql`
   query SiteTitleQuery {
     site {
@@ -62,12 +62,12 @@ const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
       <header className="menu">
         <AniLink 
           cover direction={viewportWidth < 600 ? "up" : "right"} bg={isDarkMode ? "#434E76" : "#FFFFFF"}
-          to="/" aria-label="Search" className='menu-button'>
+          to="/" aria-label="Search" className={isSearch ? 'menu-button active' : 'menu-button'}>
         <SearchIcon />
         </AniLink>
         <AniLink
           cover direction={viewportWidth < 600 ? "up" : "right"} bg={isDarkMode ? "#434E76" : "#FFFFFF"}
-          to="/list" aria-label="Snippet list" className='menu-button'>
+          to="/list" aria-label="Snippet list" className={isList ? 'menu-button active' : 'menu-button'}>
           <ListIcon />
         </AniLink>
         <a href={config.repositoryUrl} rel="noopener" target="_blank" aria-label="View on GitHub" className='menu-button'>
