@@ -20,14 +20,20 @@ const CardCorner = ({ difficulty = 'intermediate' }) => (
 );
 
 const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
-  // missing tags, example, share button
+  // missing example, share button
   console.log(snippetData)
+  const tags = snippetData.tags;
   let cardCodeHtml = `${optimizeAllNodes(getCodeBlocks(snippetData.html).code)}`;
   let cardExamplesHtml = `${optimizeAllNodes(getCodeBlocks(snippetData.html).example)}`;
   return (
     <div className="card">
       <CardCorner difficulty={difficulty} />
       <h4 className="card-title">{snippetData.title}</h4>
+      {
+        tags.map(tag => (
+          <span className="tag">{tag}</span>
+        ))
+      }
       <p className="card-description" dangerouslySetInnerHTML={{ __html: `${getTextualContent(snippetData.html)}` }} />
       <div className="card-bottom">
         <CopyToClipboard

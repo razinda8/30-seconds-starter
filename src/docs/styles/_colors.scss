@@ -58,6 +58,15 @@
   --token-color-g: #26c6da;   // Regular expressions
   --token-color-h: #e57373;   // Variables
 
+  // Tag color palette
+  --tag-border-color: #D7DDF3;
+  --tag-fore-color: #616B8F;
+
+  // Toast color palette
+  --toast-back-color: #05A864;
+  --toast-fore-color: #FFFFFF;
+  --toast-shadow-color: rgba(0, 32, 128, 0.26);
+
 
 
   // Link color palette - TODO
@@ -118,5 +127,12 @@
   // Pre & Code color palette remains unchanged for consistency
 
   // Token color palette remains unchanged for consistency
+
+  // Tag color palette
+  --tag-border-color: #2A3765;
+  --tag-fore-color: #BEC1CB; // previously 999DAD, careful
+
+  // Toast color palette
+  --toast-shadow-color: rgba(1, 8, 30, 0.44);
 
 }
