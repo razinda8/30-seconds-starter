@@ -23,4 +23,14 @@
   svg {
     vertical-align: sub;
   }
+  @media screen and (min-width: $layout-large-breakpoint) {
+    font-size: 22px;
+    line-height: 1.35;
+  }
+}
+
+.button.button-home {
+  @media screen and (min-width: $layout-large-breakpoint) {
+    margin-top: 22px;
+  }
 }

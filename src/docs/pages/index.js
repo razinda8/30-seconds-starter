@@ -37,10 +37,16 @@ const IndexPage = (props) => {
           searchQuery.length === 0 ? 
           <>
             <div className='page-graphic search-empty'>
-              <p className='empty-page-text'>Start typing a keyword to see matching snippets.</p>
+              <p className='empty-page-text search-page-text'>Start typing a keyword to see matching snippets.</p>
             </div>
           </>
-          : <p>Got something!</p>
+          :
+          <>
+            <div className='page-graphic search-no-results'>
+              <p className='empty-page-text'><strong>No results found</strong><br /></p>
+              <p className='empty-page-subtext'>We couldn't find any results for the keyword <strong>{searchQuery}</strong>.</p>
+            </div>
+          </>
         }
       </Shell>
     </>

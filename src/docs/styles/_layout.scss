@@ -104,6 +104,7 @@ p.light-sub {
 
 // Page graphic
 .page-graphic {
+  box-sizing: border-box;
   transition: all 0.3s ease;
   margin-top: 100px;
   width: 100%;
@@ -121,22 +122,32 @@ p.light-sub {
   }
   @media screen and (min-width: $layout-large-breakpoint) {
     background-size: 395px, 393px;
+    padding-top: 2vmin;
+    padding-right: 46vmin;
+    background-position-x: 95.5%, 93%;
   }
 }
 
 .empty-page-text {
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background 0.3s ease;
   text-align: center;
   margin: 36px auto 12px;
   max-width: 200px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--fore-color-darker);
   font-weight: 400;
   @media screen and (min-width: $layout-medium-breakpoint) {
     max-width: 400px;
   }
-  strong {
-    font-weight: 600;
+  @media screen and (min-width: $layout-large-breakpoint) {
+    font-size: 28px;
+    line-height: 1.35;
+    margin: 36px auto 22px 20px;
+    &.search-page-text {
+      font-size: 22px; 
+      line-height: 1.375;
+    }
   }
 }
 .empty-page-subtext {
@@ -149,7 +160,11 @@ p.light-sub {
   color: var(--fore-color-darker);
   margin: 8px auto;
   @media screen and (min-width: $layout-medium-breakpoint) {
-    max-width: 400px;
+    max-width: 256px;
+  }
+  @media screen and (min-width: $layout-large-breakpoint) {
+    font-size: 18px;
+    line-height: 1.375;
   }
 }
 
@@ -166,6 +181,7 @@ p.light-sub {
   background-size: 41vmin, 44vmin;
   @media screen and (min-width: $layout-large-breakpoint) {
     background-size: 413px, 442px;
+    background-position-x: 96.5%, 93%;
   }
 }
 
