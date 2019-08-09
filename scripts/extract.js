@@ -49,6 +49,7 @@ let listingData = {
       type: 'snippetListing',
       title: v.title,
       attributes: {
+        text: v.attributes.text,
         tags: v.attributes.tags
       },
       meta: {

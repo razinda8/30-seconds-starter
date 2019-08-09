@@ -5,6 +5,7 @@
       "type": "snippetListing",
       "title": "snippetA",
       "attributes": {
+        "text": "Explain briefly what the snippet does.\n\nExplain briefly how the snippet works.\n\n",
         "tags": [
           "function",
           "utility",
@@ -21,6 +22,7 @@
       "type": "snippetListing",
       "title": "snippetB",
       "attributes": {
+        "text": "Explain briefly what the snippet does.\n\nExplain briefly how the snippet works.\n\n",
         "tags": [
           "utility",
           "function"

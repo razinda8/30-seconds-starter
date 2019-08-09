@@ -102,6 +102,17 @@ p.light-sub {
   }
 }
 
+.page-sub-title {
+  transition: 0.3s ease all;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 16px 20px 8px;
+  color: var(--fore-color);
+  @media screen and (min-width: $layout-large-breakpoint) {
+    font-size: 20px;
+  }
+}
+
 // Page graphic
 .page-graphic {
   box-sizing: border-box;
@@ -145,6 +156,7 @@ p.light-sub {
     line-height: 1.35;
     margin: 36px auto 22px 20px;
     &.search-page-text {
+      margin-top: 12vmin;
       font-size: 22px; 
       line-height: 1.375;
     }

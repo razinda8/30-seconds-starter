@@ -6,8 +6,6 @@ import ReactCSSTransitionReplace from 'react-css-transition-replace';
 import config from "../../../config";
 
 import { toggleDarkMode } from '../state/app';
-
-import MenuTagList from './MenuTagList';
 import Search from "./Search";
 
 import SearchIcon from "./SVGs/SearchIcon";
