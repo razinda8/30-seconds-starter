@@ -3,6 +3,7 @@
 // ===================================================
 // Grid container
 .page-container {
+  overflow: hidden;
   transition: 0.3s ease all;
   background: var(--back-color);
   display: grid;
@@ -111,6 +112,21 @@ p.light-sub {
   @media screen and (min-width: $layout-large-breakpoint) {
     font-size: 20px;
   }
+}
+
+.tag-title {
+  transition: 0.3s ease all;
+  font-size: 18px;
+  color: var(-fore-color-dark);
+  line-height: 1.375;
+  a {
+    &, &:link, &:visited {
+      color: var(--fore-color-dark);
+    }
+  }
+  font-weight: 400;
+  cursor: pointer;
+  margin: 24px 20px 8px;
 }
 
 a.link-back {
