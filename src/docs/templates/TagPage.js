@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
+import { pushNewPage } from '../state/app';
 
 import Meta from '../components/Meta';
 import Shell from '../components/Shell';
@@ -9,8 +10,13 @@ import SnippetCard from '../components/SnippetCard';
 import { capitalize, getRawCodeBlocks as getCodeBlocks} from '../util';
 
 const TagRoute = (props) => {
+  console.log(props);
   const posts = props.data.allMarkdownRemark.edges;
   const tag = props.pageContext.tag;
+
+  React.useEffect(() => {
+    props.dispatch(pushNewPage(capitalize(tag), props.path))
+  },[]);
 
   return (
     <>
@@ -22,12 +28,15 @@ const TagRoute = (props) => {
         <p className='light-sub'>Click on a snippet's name to view its code.</p>
         {posts &&
           posts.map(({ node }) => (
-            <SnippetCard key={node.id} snippetData={{
+            <SnippetCard short key={node.id} snippetData={{
               title: node.frontmatter.title,
               html: node.html,
               code: getCodeBlocks(node.rawMarkdownBody).code,
-              tags: node.frontmatter.tags.split(',').map(v => v.trim())
-            }} isDarkMode={props.isDarkMode} />
+              tags: node.frontmatter.tags.split(',').map(v => v.trim()),
+              id: node.fields.slug.slice(1)
+            }} 
+            isDarkMode={props.isDarkMode} 
+            />
           ))}
       </Shell>
     </>
@@ -35,7 +44,10 @@ const TagRoute = (props) => {
 }
 
 export default connect(state => ({
-  isDarkMode: state.app.isDarkMode
+  isDarkMode: state.app.isDarkMode,
+  lastPageTitle: state.app.lastPageTitle,
+  lastPageUrl: state.app.lastPageUrl,
+  searchQuery: state.app.searchQuery
 }), null)(TagRoute);
 
 export const tagPageQuery = graphql`

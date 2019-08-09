@@ -21,8 +21,8 @@ const SnippetPage = (props) => {
         description={post.excerpt} 
       />
       <Shell>
-        <AniLink className="link-back" to="/" cover direction="right" bg={props.isDarkMode ? "#434E76" : "#FFFFFF"}>
-          <BackArrowIcon />&nbsp;&nbsp;Back to Function
+        <AniLink className="link-back" to={`${props.lastPageUrl}`} cover direction="right" bg={props.isDarkMode ? "#434E76" : "#FFFFFF"}>
+          <BackArrowIcon />&nbsp;&nbsp;Back to {props.lastPageTitle}
         </AniLink>
         <SnippetCard snippetData={{
           title: postData.title,
@@ -36,7 +36,10 @@ const SnippetPage = (props) => {
 };
 
 export default connect(state => ({
-  isDarkMode: state.app.isDarkMode
+  isDarkMode: state.app.isDarkMode,
+  lastPageTitle: state.app.lastPageTitle,
+  lastPageUrl: state.app.lastPageUrl,
+  searchQuery: state.app.searchQuery
 }), null)(SnippetPage);
 
 export const pageQuery = graphql`

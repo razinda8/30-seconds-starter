@@ -94,5 +94,8 @@ const Shell = ({ isDarkMode, dispatch, withIcon = true, children }) => {
 };
 
 export default connect(state => ({
-  isDarkMode: state.app.isDarkMode
+  isDarkMode: state.app.isDarkMode,
+  lastPageTitle: state.app.lastPageTitle,
+  lastPageUrl: state.app.lastPageUrl,
+  searchQuery: state.app.searchQuery
 }), null)(Shell);

@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import { capitalize } from '../util';
+import { pushNewPage } from '../state/app';
 
 import Shell from "../components/Shell";
 import Meta from "../components/Meta";
@@ -52,7 +53,12 @@ const IndexPage = (props) => {
 
   React.useEffect(() => {
     console.log(searchResults);
-  }, [searchResults])
+  }, [searchResults]);
+
+
+  React.useEffect(() => {
+    props.dispatch(pushNewPage('Home', '/'))
+  }, []);
 
   return (
     <>
@@ -88,7 +94,10 @@ const IndexPage = (props) => {
 }
 
 export default connect(state => ({
-  isDarkMode: state.app.isDarkMode
+  isDarkMode: state.app.isDarkMode,
+  lastPageTitle: state.app.lastPageTitle,
+  lastPageUrl: state.app.lastPageUrl,
+  searchQuery: state.app.searchQuery
 }), null)(IndexPage);
 
 export const indexPageQuery = graphql`
