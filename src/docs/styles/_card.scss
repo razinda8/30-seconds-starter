@@ -38,6 +38,26 @@
     line-height: 1.15;
     padding: 36px 18px 36px;
   }
+  .card-examples {
+    transition: all 0.3s ease;
+    position: relative;
+    margin: 8px 0px -16px -16px;
+    background: var(--pre-back-color);
+    width: calc(100% - 20px);
+    border-radius: 0px 0px 4px 4px;
+    line-height: 1.15;
+    padding: 8px 18px 36px 34px;
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0;
+      width: 1px;
+      height: calc(100% - 24px);
+      background: var(--button-example-toggler-fore-color);
+    }
+  }
   &.short {
     .card-bottom {
       display: none;

@@ -5,6 +5,8 @@ import config from "../../../config";
 import { getTextualContent, getCodeBlocks, optimizeAllNodes } from '../util';
 import ClipboardIcon from "./SVGs/ClipboardIcon";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
+import CollapseOpenIcon from "./SVGs/CollapseOpenIcon";
+import CollapseClosedIcon from "./SVGs/CollapseClosedIcon";
 
 const SnippetCard = ({short, snippetData, ...rest}) =>  {
   let difficulty = snippetData.tags.includes('advanced') ? 'advanced' : snippetData.tags.includes('beginner') ? 'beginner' : 'intermediate';
@@ -20,7 +22,8 @@ const CardCorner = ({ difficulty = 'intermediate' }) => (
 );
 
 const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
-  // missing example, share button
+  const [examplesOpen, setExamplesOpen] = React.useState(false);
+  // missing share button
   console.log(snippetData)
   const tags = snippetData.tags;
   let cardCodeHtml = `${optimizeAllNodes(getCodeBlocks(snippetData.html).code)}`;
@@ -56,6 +59,13 @@ const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
           </button>
         </CopyToClipboard>
         <pre className={`card-code language-${config.language}`} dangerouslySetInnerHTML={{ __html: cardCodeHtml }} />
+        <button className="button button-example-toggler" onClick={() => setExamplesOpen(!examplesOpen)}>
+          {examplesOpen ? (<CollapseOpenIcon />) : (<CollapseClosedIcon />)}&nbsp;Examples
+        </button>
+        {examplesOpen && <pre className="section card-examples language-js"
+          dangerouslySetInnerHTML={{ __html: cardExamplesHtml }}
+        />
+        }
       </div>
     </div>
   );
