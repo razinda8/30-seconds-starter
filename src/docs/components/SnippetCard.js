@@ -3,20 +3,29 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { getTextualContent, getCodeBlocks, optimizeAllNodes } from '../util';
 
-const SnippetCard = ({short, ...rest}) =>  short ? (<ShortCard {...rest} />) : (<FullCard {...rest} />);
+const SnippetCard = ({short, snippetData, ...rest}) =>  {
+  let difficulty = snippetData.tags.includes('advanced') ? 'advanced' : snippetData.tags.includes('beginner') ? 'beginner' : 'intermediate';
+  return short ? (
+    <ShortCard snippetData={snippetData} difficulty={difficulty} {...rest} />
+  ) : (
+    <FullCard snippetData={snippetData} difficulty={difficulty} {...rest} />
+  );
+}
 
-// const CardCorner = ({ difficulty = 'intermediate' }) => (
-//   <div className={`corner ${difficulty}`} aria-label={difficulty} title={difficulty} />
-// );
+const CardCorner = ({ difficulty = 'intermediate' }) => (
+  <div className={`card-corner ${difficulty}`} aria-label={difficulty} title={difficulty} />
+);
 
-const FullCard = ({ snippetData }) => (
+const FullCard = ({ snippetData, difficulty }) => (
   <div className="card">
+    <CardCorner difficulty={difficulty} />
     <h4 className="card-title">{snippetData.title}</h4>
   </div>
 );
 
-const ShortCard = ({ snippetData }) => (
+const ShortCard = ({ snippetData, difficulty }) => (
   <div className="card">
+    <CardCorner difficulty={difficulty} />
     <h4 className="card-title">{snippetData.title}</h4>
     <p className="card-description" dangerouslySetInnerHTML={{ __html: `${getTextualContent(snippetData.html)}` }} />
   </div>

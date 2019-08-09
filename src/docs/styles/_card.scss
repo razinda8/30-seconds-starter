@@ -2,6 +2,7 @@
 // Cards
 // ===================================================
 .card {
+  position: relative;
   transition: all 0.3s ease;
   margin: 16px 20px;
   background: var(--card-back-color);
@@ -13,14 +14,60 @@
     font-size: 18px;
     line-height: 1.375;
     font-weight: 500;
-    margin: 8px 8px 2px;
+    margin: 0px 0px 2px;
   }
   .card-description {
-    margin: 2px 0px 8px;
+    margin: 2px -8px 2px;
     font-size: 14px;
     color: var(--card-fore-color-light);
     line-height: 1.35;
     font-weight: 500;
+  }
+}
+
+.card-corner {
+  box-sizing: border-box;
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: var(--corner-color);
+  &.beginner {
+    --corner-color: var(--beginner-color);
+  }
+  &.intermediate {
+    --corner-color: var(--intermediate-color);
+  }
+  &.advanced {
+    --corner-color: var(--advanced-color);
+  }
+  &.intermediate, &.advanced {
+    &::before {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 0px;
+      right: 12px;
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background: var(--corner-color);
+    }
+  }
+  &.advanced {
+    &::after {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 0px;
+      right: 24px;
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background: var(--corner-color);
+    }
   }
 }
 
