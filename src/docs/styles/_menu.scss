@@ -17,6 +17,7 @@
   }
   // Menu buttons
   .menu-button {
+    cursor: pointer;
     transition: 0.3s ease all;
     background: var(--menu-back-color);
     color: var(--menu-fore-color);

@@ -1,10 +1,12 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
+import { connect } from 'react-redux';
 
 import Meta from '../components/Meta';
 import Shell from '../components/Shell';
 import SnippetCard from '../components/SnippetCard';
 import BackArrowIcon from '../components/SVGs/BackArrowIcon';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 const SnippetPage = (props) => {
   const post = props.data.markdownRemark;
@@ -19,19 +21,23 @@ const SnippetPage = (props) => {
         description={post.excerpt} 
       />
       <Shell>
-        <Link className="link-back" to="/"><BackArrowIcon />&nbsp;&nbsp;Back to Function</Link>
+        <AniLink className="link-back" to="/" cover direction="right" bg={props.isDarkMode ? "#434E76" : "#FFFFFF"}>
+          <BackArrowIcon />&nbsp;&nbsp;Back to Function
+        </AniLink>
         <SnippetCard snippetData={{
           title: postData.title,
           html: post.html,
           code: postData.attributes.codeBlocks.code,
           tags: postData.attributes.tags
-        }} />
+        }} isDarkMode={props.isDarkMode} />
       </Shell>
     </>
   );
 };
 
-export default SnippetPage;
+export default connect(state => ({
+  isDarkMode: state.app.isDarkMode
+}), null)(SnippetPage);
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {

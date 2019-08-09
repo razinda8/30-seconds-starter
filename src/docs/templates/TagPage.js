@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { connect } from 'react-redux';
 
 import Meta from '../components/Meta';
 import Shell from '../components/Shell';
@@ -17,7 +18,8 @@ const TagRoute = (props) => {
         title={capitalize(tag)}
       />
       <Shell>
-        <h2 className='category-name'>{capitalize(tag)}</h2>
+        <h2 className="page-title">{capitalize(tag)}</h2>
+        <p className='light-sub'>Click on a snippet's name to view its code.</p>
         {posts &&
           posts.map(({ node }) => (
             <SnippetCard key={node.id} snippetData={{
@@ -25,14 +27,16 @@ const TagRoute = (props) => {
               html: node.html,
               code: getCodeBlocks(node.rawMarkdownBody).code,
               tags: node.frontmatter.tags.split(',').map(v => v.trim())
-            }} />
+            }} isDarkMode={props.isDarkMode} />
           ))}
       </Shell>
     </>
   );
 }
 
-export default TagRoute;
+export default connect(state => ({
+  isDarkMode: state.app.isDarkMode
+}), null)(TagRoute);
 
 export const tagPageQuery = graphql`
   query TagPage($tagRegex: String) {

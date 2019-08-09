@@ -13,7 +13,8 @@ const IndexPage = (props) => {
     title: snippet.title,
     html: props.data.allMarkdownRemark.edges.find(v => v.node.frontmatter.title === snippet.title).node.html,
     tags: snippet.attributes.tags,
-    text: snippet.attributes.text
+    text: snippet.attributes.text,
+    id: snippet.id
   }));
   const site = props.data.site.siteMetadata;
   const tags = snippets.reduce((acc, snippet) => {
@@ -77,7 +78,7 @@ const IndexPage = (props) => {
           <>
             <h2 className='page-sub-title'>Search results</h2>
             {searchResults.map(snippet => (
-              <SnippetCard short key={snippet.id} snippetData={snippet} />
+              <SnippetCard short key={snippet.id} snippetData={snippet} isDarkMode={props.isDarkMode} />
             ))}
           </>
         }
