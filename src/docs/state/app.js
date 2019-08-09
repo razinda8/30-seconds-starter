@@ -7,6 +7,7 @@ const initialState = {
 
 const TOGGLE_DARKMODE = 'TOGGLE_DARKMODE';
 const PUSH_NEW_PAGE = 'PUSH_NEW_PAGE';
+const PUSH_NEW_QUERY = 'PUSH_NEW_QUERY';
 
 export const toggleDarkMode = isDarkMode => ({
   type: TOGGLE_DARKMODE, isDarkMode
@@ -15,6 +16,10 @@ export const toggleDarkMode = isDarkMode => ({
 export const pushNewPage = (pageTitle, pageUrl) => ({
   type: PUSH_NEW_PAGE, pageTitle, pageUrl
 });
+
+export const pushNewQuery = (query) => ({
+  type: PUSH_NEW_QUERY, query
+})
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -28,6 +33,11 @@ export default (state = initialState, action) => {
         ...state,
         lastPageTitle: action.pageTitle,
         lastPageUrl: action.pageUrl
+      }
+    case PUSH_NEW_QUERY:
+      return {
+        ...state,
+        searchQuery: action.query
       }
     default:
       return state;

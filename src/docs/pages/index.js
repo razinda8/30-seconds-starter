@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
 import { capitalize } from '../util';
-import { pushNewPage } from '../state/app';
+import { pushNewPage, pushNewQuery } from '../state/app';
 
 import Shell from "../components/Shell";
 import Meta from "../components/Meta";
@@ -10,6 +10,7 @@ import Search from "../components/Search";
 import SnippetCard from "../components/SnippetCard";
 
 const IndexPage = (props) => {
+  console.log(props);
   const snippets = props.data.snippetDataJson.data.map(snippet => ({
     title: snippet.title,
     html: props.data.allMarkdownRemark.edges.find(v => v.node.frontmatter.title === snippet.title).node.html,
@@ -31,10 +32,11 @@ const IndexPage = (props) => {
   //   snippets: snippets.filter(snippet => snippet.attributes && snippet.attributes.tags && snippet.attributes.tags[0] === tag)
   // }));
   
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState(props.searchQuery);
   const [searchResults, setSearchResults] = React.useState(snippets);
 
   React.useEffect(() => {
+    props.dispatch(pushNewQuery(searchQuery));
     let q = searchQuery.toLowerCase();
     let results = snippets;
     if (q.trim().length)
@@ -64,7 +66,7 @@ const IndexPage = (props) => {
     <>
       <Meta />
       <Shell withIcon={false}>
-        <Search setSearchQuery={setSearchQuery}/>
+        <Search setSearchQuery={setSearchQuery} defaultValue={props.searchQuery}/>
         <p className='light-sub'>Click on a snippet's name to view its code.</p>
         {
           searchQuery.length === 0 ? 
