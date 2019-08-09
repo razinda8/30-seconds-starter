@@ -40,15 +40,22 @@
 .button.button-copy {
   position: absolute;
   top: -32px;
-  right: 12px;
+  right: 24px;
+  padding: 8px 10px;
+}
+
+.button.button-social-sh {
+  position: absolute;
+  top: -32px;
+  right: 80px;
   padding: 8px 10px;
 }
 
 .button.button-example-toggler {
-  margin: -32px 0px -16px -16px;
+  margin: -32px 0px -16px 0px;
   background: var(--pre-back-color);
   border-radius: 0px 0px 4px 4px;
-  width: calc(100% + 32px);
+  width: calc(100%);
   text-align: left;
   display: block;
   font-size: 14px;
@@ -57,7 +64,11 @@
   font-weight: 300;
   color: var(--button-example-toggler-fore-color);
   box-shadow: none;
+  font-family: 'Roboto Mono', Menlo, Consolas, monospace; 
   &:hover, &:focus {
     box-shadow: none;
+  }
+  svg {
+    margin-right: 4px;
   }
 }

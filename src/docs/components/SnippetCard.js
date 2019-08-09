@@ -4,9 +4,11 @@ import config from "../../../config";
 
 import { getTextualContent, getCodeBlocks, optimizeAllNodes } from '../util';
 import ClipboardIcon from "./SVGs/ClipboardIcon";
+import ShareIcon from "./SVGs/ShareIcon";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import CollapseOpenIcon from "./SVGs/CollapseOpenIcon";
 import CollapseClosedIcon from "./SVGs/CollapseClosedIcon";
+import ReactCSSTransitionReplace from 'react-css-transition-replace';
 
 const SnippetCard = ({short, snippetData, ...rest}) =>  {
   let difficulty = snippetData.tags.includes('advanced') ? 'advanced' : snippetData.tags.includes('beginner') ? 'beginner' : 'intermediate';
@@ -23,7 +25,6 @@ const CardCorner = ({ difficulty = 'intermediate' }) => (
 
 const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
   const [examplesOpen, setExamplesOpen] = React.useState(false);
-  // missing share button
   console.log(snippetData)
   const tags = snippetData.tags;
   let cardCodeHtml = `${optimizeAllNodes(getCodeBlocks(snippetData.html).code)}`;
@@ -58,14 +59,23 @@ const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
             <ClipboardIcon />
           </button>
         </CopyToClipboard>
+        {/* <button className="button button-b button-social-sh" aria-label="Share">
+          <ShareIcon />
+        </button> */}
         <pre className={`card-code language-${config.language}`} dangerouslySetInnerHTML={{ __html: cardCodeHtml }} />
         <button className="button button-example-toggler" onClick={() => setExamplesOpen(!examplesOpen)}>
-          {examplesOpen ? (<CollapseOpenIcon />) : (<CollapseClosedIcon />)}&nbsp;Examples
+          {examplesOpen ? (<CollapseOpenIcon />) : (<CollapseClosedIcon />)}Examples
         </button>
-        {examplesOpen && <pre className="section card-examples language-js"
-          dangerouslySetInnerHTML={{ __html: cardExamplesHtml }}
-        />
-        }
+        <ReactCSSTransitionReplace
+          transitionName="roll-up"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}
+        >
+          {examplesOpen && <pre className="section card-examples language-js"
+            dangerouslySetInnerHTML={{ __html: cardExamplesHtml }}
+          />
+          }
+        </ReactCSSTransitionReplace>
       </div>
     </div>
   );
