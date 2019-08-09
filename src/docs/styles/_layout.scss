@@ -3,6 +3,7 @@
 // ===================================================
 // Grid container
 .page-container {
+  transition: 0.3s ease all;
   background: var(--back-color);
   display: grid;
   width: 100vw;
@@ -33,6 +34,20 @@ header.menu {
   grid-area: content;
   overflow: auto;
   background: var(--back-color);
+  &::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-back-color);
+    margin: 8px 0;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-fore-color);
+    border: 1px solid var(--scrollbar-fore-color-lighter);
+    border-radius: 4px;
+  }
 }
 
 // Website title
@@ -44,7 +59,11 @@ h1.website-title {
   line-height: 1.5;
   position: relative;
   top: 4px;
-  margin: 24px 20px 0px;
+  margin: 24px 20px 4px;
+  @media screen and (min-width: $layout-large-breakpoint) {
+    font-size: 16px;
+    line-height: 1.375;
+  }
 }
 
 // Website logo
@@ -64,6 +83,10 @@ p.light-sub {
   font-size: 14px;
   line-height: 1.5;
   margin: 4px 20px 0px;
+  @media screen and (min-width: $layout-large-breakpoint) {
+    font-size: 16px;
+    line-height: 1.375;
+  }
 }
 
 .page-title {
@@ -73,6 +96,10 @@ p.light-sub {
   letter-spacing: 0.03em;
   color: var(--fore-color-darker);
   margin: 0 20px;
+  @media screen and (min-width: $layout-large-breakpoint) {
+    font-size: 40px;
+    line-height: 1.35;
+  }
 }
 
 // Page graphic
