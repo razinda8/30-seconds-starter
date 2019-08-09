@@ -94,6 +94,9 @@ p.light-sub {
     padding-top: 38vmin;
     height: calc(40vmin);
   }
+  @media screen and (min-width: $layout-large-breakpoint) {
+    background-size: 395px, 393px;
+  }
 }
 
 .empty-page-text {
@@ -136,6 +139,9 @@ p.light-sub {
   background-position-x: 53.5%, center;
   background-position-y: 8.5%, top;
   background-size: 41vmin, 44vmin;
+  @media screen and (min-width: $layout-large-breakpoint) {
+    background-size: 413px, 442px;
+  }
 }
 
 .page-container.dark {
