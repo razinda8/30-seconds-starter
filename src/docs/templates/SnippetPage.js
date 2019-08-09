@@ -1,9 +1,10 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import Meta from '../components/Meta';
 import Shell from '../components/Shell';
 import SnippetCard from '../components/SnippetCard';
+import BackArrowIcon from '../components/SVGs/BackArrowIcon';
 
 const SnippetPage = (props) => {
   const post = props.data.markdownRemark;
@@ -18,6 +19,7 @@ const SnippetPage = (props) => {
         description={post.excerpt} 
       />
       <Shell>
+        <Link className="link-back" to="/"><BackArrowIcon />&nbsp;&nbsp;Back to Function</Link>
         <SnippetCard snippetData={{
           title: postData.title,
           html: post.html,

@@ -43,6 +43,20 @@
   --card-fore-color-light: #424242;
   --card-shadow-color-a: rgba(240, 242, 247, 0.1);
   --card-shadow-color-b: rgba(0, 32, 128, 0.1);
+  
+  // Pre & Code color palette
+  --pre-fore-color: #e57373;
+  --pre-back-color: #1F263F;
+
+  // Token color palette
+  --token-color-a: #7f99a5;   // Comments
+  --token-color-b: #bdbdbd;   // Punctuation
+  --token-color-c: #64b5f6;   // Functions
+  --token-color-d: #ff8f00;   // Numbers
+  --token-color-e: #c5e1a5;   // Strings
+  --token-color-f: #ce93d8;   // Keywords
+  --token-color-g: #26c6da;   // Regular expressions
+  --token-color-h: #e57373;   // Variables
 
 
 
@@ -55,25 +69,11 @@
   --code-back-color: #f0f0f0;
   --code-selected-color: #37474f;
 
-  // Pre color palette - TODO
-  --pre-fore-color: #e57373;
-  --pre-back-color: #263238;
-
-  // Token color palette - TODO
-  --token-color-a: #7f99a5;   // Comments
-  --token-color-b: #bdbdbd;   // Punctuation
-  --token-color-c: #64b5f6;   // Functions
-  --token-color-d: #ff8f00;   // Numbers
-  --token-color-e: #c5e1a5;   // Strings
-  --token-color-f: #ce93d8;   // Keywords
-  --token-color-g: #26c6da;   // Regular expressions
-  --token-color-h: #e57373;   // Variables
-
-  // Copy button palette
+  // Copy button palette - TODO
   --copy-button-color: #1e88e5;
   --copy-button-hover-color: #2196f3;
 
-  // Collapse color palette
+  // Collapse color palette - TODO
   --collapse-color: #607d8b;
 }
 
@@ -114,5 +114,9 @@
   --card-fore-color: #F0F0F0;
   --card-fore-color-light: #D6D6D6; // previously C0C0C0, careful
   --card-shadow-color-b: rgba(1, 8, 30, 0.24);
+
+  // Pre & Code color palette remains unchanged for consistency
+
+  // Token color palette remains unchanged for consistency
 
 }

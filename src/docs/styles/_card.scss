@@ -23,6 +23,17 @@
     line-height: 1.35;
     font-weight: 500;
   }
+  .card-bottom {
+    position: relative;
+  }
+  .card-code {
+    margin: 24px 0px -16px -16px;
+    background: var(--pre-back-color);
+    width: calc(100% - 4px);
+    border-radius: 22px 0px 4px 4px;
+    line-height: 1.15;
+    padding: 36px 18px 36px;
+  }
 }
 
 .card-corner {

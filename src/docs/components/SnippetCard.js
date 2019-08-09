@@ -1,7 +1,9 @@
 import React from "react";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import config from "../../../config";
 
 import { getTextualContent, getCodeBlocks, optimizeAllNodes } from '../util';
+import ClipboardIcon from "./SVGs/ClipboardIcon";
 
 const SnippetCard = ({short, snippetData, ...rest}) =>  {
   let difficulty = snippetData.tags.includes('advanced') ? 'advanced' : snippetData.tags.includes('beginner') ? 'beginner' : 'intermediate';
@@ -16,12 +18,39 @@ const CardCorner = ({ difficulty = 'intermediate' }) => (
   <div className={`card-corner ${difficulty}`} aria-label={difficulty} title={difficulty} />
 );
 
-const FullCard = ({ snippetData, difficulty }) => (
-  <div className="card">
-    <CardCorner difficulty={difficulty} />
-    <h4 className="card-title">{snippetData.title}</h4>
-  </div>
-);
+const FullCard = ({ snippetData, difficulty }) => {
+  let cardCodeHtml = `${optimizeAllNodes(getCodeBlocks(snippetData.html).code)}`;
+  let cardExamplesHtml = `${optimizeAllNodes(getCodeBlocks(snippetData.html).example)}`;
+  return (
+    <div className="card">
+      <CardCorner difficulty={difficulty} />
+      <h4 className="card-title">{snippetData.title}</h4>
+      <p className="card-description" dangerouslySetInnerHTML={{ __html: `${getTextualContent(snippetData.html)}` }} />
+      <div className="card-bottom">
+        <CopyToClipboard
+          text={snippetData.code}
+          onCopy={() => {
+            let tst = document.createElement('div');
+            tst.classList = 'toast';
+            tst.innerHTML = 'Snippet copied to clipboard!';
+            document.body.appendChild(tst);
+            setTimeout(function () {
+              tst.style.opacity = 0;
+              setTimeout(function () {
+                document.body.removeChild(tst);
+              }, 300);
+            }, 1700);
+          }}
+        >
+          <button className="button button-a button-copy" aria-label="Copy to clipboard">
+            <ClipboardIcon />
+          </button>
+        </CopyToClipboard>
+        <pre className={`card-code language-${config.language}`} dangerouslySetInnerHTML={{ __html: cardCodeHtml }} />
+      </div>
+    </div>
+  );
+};
 
 const ShortCard = ({ snippetData, difficulty }) => (
   <div className="card">

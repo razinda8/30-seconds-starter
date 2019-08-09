@@ -113,6 +113,24 @@ p.light-sub {
   }
 }
 
+a.link-back {
+  transition: 0.3s ease all;
+  font-size: 18px;
+  line-height: 1.35;
+  display: block;
+  margin: 16px 20px 24px;
+  font-weight: 500;
+  &, &:link, &:visited {
+    color: var(--fore-color-dark);
+  }
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+  svg {
+    vertical-align: middle;
+  }
+}
+
 // Page graphic
 .page-graphic {
   box-sizing: border-box;
