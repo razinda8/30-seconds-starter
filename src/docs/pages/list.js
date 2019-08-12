@@ -10,6 +10,7 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import SnippetCard from '../components/SnippetCard';
 
 import { getRawCodeBlocks as getCodeBlocks } from '../util';
+import SimpleCard from '../components/SimpleCard';
 
 // ===================================================
 // Snippet list page
@@ -35,6 +36,13 @@ const ListPage = props => {
     if (!acc.includes(primaryTag)) acc.push(primaryTag);
     return acc;
   }, []);
+  const staticPages = [
+    {
+      url: 'about',
+      title: 'About',
+      description: 'A few word about us, our goals and our projects.'
+    }
+  ];
 
   React.useEffect(() => {
     props.dispatch(pushNewPage('Snippet List', '/list'));
@@ -72,6 +80,22 @@ const ListPage = props => {
                 />
               ))}
           </>
+        ))}
+        <br/>
+        {staticPages.map(page => (
+          <SimpleCard 
+            title={(
+              <AniLink
+                paintDrip
+                to={`/${page.url}`}
+                hex={props.isDarkMode ? '#434E76' : '#FFFFFF'}
+              >
+                {page.title}
+              </AniLink>
+            )}
+          >
+            <p>{page.description}</p>
+          </SimpleCard>
         ))}
       </Shell>
     </>
