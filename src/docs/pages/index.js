@@ -58,10 +58,9 @@ const IndexPage = props => {
           alt='Logo'
           className='index-logo'
         />
-        <h1 className='index-title'>30 seconds of code</h1>
+        <h1 className='index-title'>{props.data.site.siteMetadata.title}</h1>
         <p className='index-sub-title'>
-          Curated collection of useful JavaScript snippets that you can
-          understand in 30 seconds or less.
+          {props.data.site.siteMetadata.description}
         </p>
         <Search
           setSearchQuery={setSearchQuery}
