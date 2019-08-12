@@ -127,7 +127,7 @@ try {
   // Add the ending static part
   output += `\n${endPart}\n`;
   // Write to the README file
-  fs.writeFileSync('README-test.md', output);
+  fs.writeFileSync('README.md', output);
 } catch (err) {
   console.log(`${red('ERROR!')} During README generation: ${err}`);
   process.exit(1);
