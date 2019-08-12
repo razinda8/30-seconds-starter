@@ -50,12 +50,12 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  background: var(--code-selected-color);
+  background: var(--pre-selected-color);
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
-  background: var(--code-selected-color);
+  background: var(--pre-selected-color);
 }
 
 :not(pre) > code[class*="language-"] {
@@ -105,4 +105,17 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 }
 .language-css .token.string, .style .token.string {
   color: var(--token-color-f);
+}
+
+p > code {
+  &, &[class*="language-"] {
+    color: var(--code-fore-color);
+    background: var(--code-back-color);
+    &::-moz-selection, & ::-moz-selection {
+      background: var(--code-selected-color);
+    }
+    &::selection, & ::selection {
+      background: var(--code-selected-color);
+    }
+  }
 }

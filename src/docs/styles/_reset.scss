@@ -15,6 +15,7 @@ html, * {
 }
 // Apply fixes and defaults as necessary for modern browsers only
 a, b, del, em, i, ins, q, span, strong, u {
+  transition: 0.3s ease all;
   font-size: 1em; // Fix for elements inside headings not displaying properly.
 }
 body {
