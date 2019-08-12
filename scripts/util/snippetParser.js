@@ -28,7 +28,7 @@ const getFilesInDir = (directoryPath, withPath, exclude = null) => {
         return fileNames;
       }, []);
     }
-    return directoryFilenames;
+    return directoryFilenames.filter(v => v !== 'README.md');
   } catch (err) {
     console.log(`${red('ERROR!')} During snippet loading: ${err}`);
     process.exit(1);
