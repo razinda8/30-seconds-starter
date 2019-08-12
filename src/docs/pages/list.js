@@ -39,7 +39,7 @@ const ListPage = (props) => {
 
   return (
     <>
-      <Meta />
+      <Meta title="Snippet List"/>
       <Shell withIcon={false} isList>
         <h2 className="page-title">Snippet List</h2>
         <p className='light-sub'>Click on a snippet’s name to view its code or a tag name to view all snippets in that category.</p>

@@ -14,7 +14,7 @@ import DarkModeIcon from "./SVGs/DarkModeIcon";
 import LightModeIcon from "./SVGs/LightModeIcon";
 import ListIcon from "./SVGs/ListIcon";
 
-const Shell = ({ isDarkMode, isSearch, isList, dispatch, withIcon = true, children }) => {
+const Shell = ({ isDarkMode, isSearch, isList, dispatch, withIcon = true, withTitle = true, children }) => {
   const data = useStaticQuery(graphql`
   query SiteTitleQuery {
     site {
@@ -62,7 +62,7 @@ const Shell = ({ isDarkMode, isSearch, isList, dispatch, withIcon = true, childr
       <header className="menu">
         <AniLink 
           cover direction={viewportWidth < 600 ? "up" : "right"} bg={isDarkMode ? "#434E76" : "#FFFFFF"}
-          to="/" aria-label="Search" className={isSearch ? 'menu-button active' : 'menu-button'}>
+          to="/search" aria-label="Search" className={isSearch ? 'menu-button active' : 'menu-button'}>
         <SearchIcon />
         </AniLink>
         <AniLink
@@ -84,9 +84,9 @@ const Shell = ({ isDarkMode, isSearch, isList, dispatch, withIcon = true, childr
       </header>
       {/* Content */}
       <div className='content'>
-        <h1 className='website-title'>{data.site.siteMetadata.title}
+        {withTitle ? <h1 className='website-title'>{data.site.siteMetadata.title}
         {withIcon ? <img src={data.file.childImageSharp.original.src} alt="Logo" className='website-logo'/>: ''}
-        </h1>
+        </h1> : ''}
         {children}
       </div>
     </div>

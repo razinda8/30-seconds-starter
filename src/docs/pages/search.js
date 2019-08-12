@@ -11,7 +11,7 @@ import SnippetCard from "../components/SnippetCard";
 
 import { getRawCodeBlocks as getCodeBlocks } from '../util';
 
-const IndexPage = (props) => {
+const SearchPage = (props) => {
   console.log(props);
   const snippets = props.data.snippetDataJson.data.map(snippet => ({
     title: snippet.title,
@@ -34,7 +34,7 @@ const IndexPage = (props) => {
   //   tag,
   //   snippets: snippets.filter(snippet => snippet.attributes && snippet.attributes.tags && snippet.attributes.tags[0] === tag)
   // }));
-  
+
   const [searchQuery, setSearchQuery] = React.useState(props.searchQuery);
   const [searchResults, setSearchResults] = React.useState(snippets);
 
@@ -44,15 +44,15 @@ const IndexPage = (props) => {
     let results = snippets;
     if (q.trim().length)
       results = snippets.filter(v => v.tags.filter(t => t.indexOf(q) !== -1).length || v.title.toLowerCase().indexOf(q) !== -1);
-      // results = taggedSnippets.reduce((acc, tagData) => {
-      //   const matches = tagData.snippets.filter(v => v.attributes.tags.filter(t => t.indexOf(q) !== -1).length || v.title.toLowerCase().indexOf(q) !== -1);
-      //   if (matches.length > 0)
-      //     acc.push({
-      //       tag: tagData.tag,
-      //       snippets: matches
-      //     });
-      //   return acc;
-      // }, []);
+    // results = taggedSnippets.reduce((acc, tagData) => {
+    //   const matches = tagData.snippets.filter(v => v.attributes.tags.filter(t => t.indexOf(q) !== -1).length || v.title.toLowerCase().indexOf(q) !== -1);
+    //   if (matches.length > 0)
+    //     acc.push({
+    //       tag: tagData.tag,
+    //       snippets: matches
+    //     });
+    //   return acc;
+    // }, []);
     setSearchResults(results);
   }, [searchQuery]);
 
@@ -67,25 +67,31 @@ const IndexPage = (props) => {
 
   return (
     <>
-      <Meta />
-      <Shell withIcon={false} withTitle={false}>
-        <img src={props.data.file.childImageSharp.original.src} alt="Logo" className='index-logo' />
-        <h1 className='index-title'>30 seconds of code</h1>
-        <p className='index-sub-title'>Curated collection of useful JavaScript snippets that you can understand in 30 seconds or less.</p>
-        <Search setSearchQuery={setSearchQuery} defaultValue={props.searchQuery}/>
+      <Meta title="Search"/>
+      <Shell withIcon={false} isSearch>
+        <Search setSearchQuery={setSearchQuery} defaultValue={props.searchQuery} />
+        <p className='light-sub'>Click on a snippet's name to view its code.</p>
         {
-          searchQuery.length === 0 ? 
-            <p className='light-sub'>Start typing a keyword to see matching snippets.</p>
-          : searchResults.length === 0 ?
-            <p className='light-sub'>We couldn't find any results for the keyword <strong>{searchQuery}</strong>.</p>
-          :
+          searchQuery.length === 0 ?
             <>
-              <p className='light-sub'>Click on a snippet's name to view its code.</p>
-              <h2 className='page-sub-title'>Search results</h2>
-              {searchResults.map(snippet => (
-                <SnippetCard short key={snippet.id} snippetData={snippet} isDarkMode={props.isDarkMode} />
-              ))}
+              <div className='page-graphic search-empty'>
+                <p className='empty-page-text search-page-text'>Start typing a keyword to see matching snippets.</p>
+              </div>
             </>
+            : searchResults.length === 0 ?
+              <>
+                <div className='page-graphic search-no-results'>
+                  <p className='empty-page-text'><strong>No results found</strong><br /></p>
+                  <p className='empty-page-subtext'>We couldn't find any results for the keyword <strong>{searchQuery}</strong>.</p>
+                </div>
+              </>
+              :
+              <>
+                <h2 className='page-sub-title'>Search results</h2>
+                {searchResults.map(snippet => (
+                  <SnippetCard short key={snippet.id} snippetData={snippet} isDarkMode={props.isDarkMode} />
+                ))}
+              </>
         }
       </Shell>
     </>
@@ -97,23 +103,15 @@ export default connect(state => ({
   lastPageTitle: state.app.lastPageTitle,
   lastPageUrl: state.app.lastPageUrl,
   searchQuery: state.app.searchQuery
-}), null)(IndexPage);
+}), null)(SearchPage);
 
-export const indexPageQuery = graphql`
-  query snippetList {
+export const searchPageQuery = graphql`
+  query searchSnippetList {
     site {
       siteMetadata {
         title
         description
         author
-      }
-    }
-    file(relativePath: {eq: "30s-icon.png"}) {
-      id
-      childImageSharp {
-        original {
-          src
-        }
       }
     }
     snippetDataJson(meta: {type: {eq: "snippetListingArray"}}) {
