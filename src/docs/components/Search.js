@@ -1,15 +1,28 @@
-import React from "react";
+import React from 'react';
 
-const Search = ({menuOpen, setSearchQuery, className=''}) => {
-  const [value, setValue] = React.useState('');
+// ===================================================
+// Simple, stateful search component
+// ===================================================
+const Search = ({ defaultValue = '', setSearchQuery, className = '' }) => {
+  const [value, setValue] = React.useState(defaultValue);
 
   React.useEffect(() => {
     setSearchQuery(value);
-  },[value]);
+  }, [value]);
 
   return (
-    <input className={className ? className : menuOpen ? "col-nav" : ""} type="search" id="searchInput" placeholder="Search..." aria-label="Snippet search" onKeyUp={(e) => { setValue(e.target.value); }}/>
+    <input
+      defaultValue={defaultValue}
+      className='search-box'
+      type='search'
+      id='searchInput'
+      placeholder='Search...'
+      aria-label='Snippet search'
+      onKeyUp={e => {
+        setValue(e.target.value);
+      }}
+    />
   );
-}
+};
 
 export default Search;

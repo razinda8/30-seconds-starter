@@ -11,9 +11,9 @@ import SnippetCard from '../components/SnippetCard';
 import { getRawCodeBlocks as getCodeBlocks } from '../util';
 
 // ===================================================
-// Home page (splash and search)
+// Search page
 // ===================================================
-const IndexPage = props => {
+const SearchPage = props => {
   const snippets = props.data.snippetDataJson.data.map(snippet => ({
     title: snippet.title,
     html: props.data.allMarkdownRemark.edges.find(
@@ -51,40 +51,42 @@ const IndexPage = props => {
 
   return (
     <>
-      <Meta />
-      <Shell withIcon={false} withTitle={false}>
-        <img
-          src={props.data.file.childImageSharp.original.src}
-          alt='Logo'
-          className='index-logo'
-        />
-        <h1 className='index-title'>{props.data.site.siteMetadata.title}</h1>
-        <p className='index-sub-title'>
-          {props.data.site.siteMetadata.description}
-        </p>
+      <Meta title='Search' />
+      <Shell withIcon={false} isSearch>
         <Search
           setSearchQuery={setSearchQuery}
           defaultValue={props.searchQuery}
         />
+        <p className='light-sub'>Click on a snippet's name to view its code.</p>
+        {/* Display page background or results depending on state */}
         {searchQuery.length === 0 ? (
-          <p className='light-sub'>
-            Start typing a keyword to see matching snippets.
-          </p>
+          <>
+            <div className='page-graphic search-empty'>
+              <p className='empty-page-text search-page-text'>
+                Start typing a keyword to see matching snippets.
+              </p>
+            </div>
+          </>
         ) : searchResults.length === 0 ? (
-          <p className='light-sub'>
-            We couldn't find any results for the keyword{' '}
-            <strong>{searchQuery}</strong>.
-          </p>
+          <>
+            <div className='page-graphic search-no-results'>
+              <p className='empty-page-text'>
+                <strong>No results found</strong>
+                <br />
+              </p>
+              <p className='empty-page-subtext'>
+                We couldn't find any results for the keyword{' '}
+                <strong>{searchQuery}</strong>.
+              </p>
+            </div>
+          </>
         ) : (
           <>
-            <p className='light-sub'>
-              Click on a snippet's name to view its code.
-            </p>
             <h2 className='page-sub-title'>Search results</h2>
             {searchResults.map(snippet => (
               <SnippetCard
-                short
                 key={`snippet_${snippet.id}`}
+                short
                 snippetData={snippet}
                 isDarkMode={props.isDarkMode}
               />
@@ -104,23 +106,15 @@ export default connect(
     searchQuery: state.app.searchQuery,
   }),
   null,
-)(IndexPage);
+)(SearchPage);
 
-export const indexPageQuery = graphql`
-  query snippetList {
+export const searchPageQuery = graphql`
+  query searchSnippetList {
     site {
       siteMetadata {
         title
         description
         author
-      }
-    }
-    file(relativePath: { eq: "30s-icon.png" }) {
-      id
-      childImageSharp {
-        original {
-          src
-        }
       }
     }
     snippetDataJson(meta: { type: { eq: "snippetListingArray" } }) {
