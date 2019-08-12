@@ -11,4 +11,3 @@ script:
 after_success:
 - chmod +x .travis/push.sh
 - .travis/push.sh
-group: deprecated-2017Q4
