@@ -56,7 +56,7 @@ const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
       {tags.map(tag => (
         <span className='tag' key={`tag_${tag}`}>{tag}</span>
       ))}
-      <p
+      <div
         className='card-description'
         dangerouslySetInnerHTML={{
           __html: `${getTextualContent(snippetData.html)}`,
@@ -134,7 +134,7 @@ const ShortCard = ({ snippetData, difficulty, isDarkMode }) => {
           {snippetData.title}
         </AniLink>
       </h4>
-      <p
+      <div
         className='card-description'
         dangerouslySetInnerHTML={{
           __html: `${getTextualContent(snippetData.html)}`,

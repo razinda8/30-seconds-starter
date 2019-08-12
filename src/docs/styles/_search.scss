@@ -39,3 +39,19 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23999EBD' stroke-width='1.5' stroke-linecap='round' strokelinejoin='round' className='feather feather-search'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
   }
 }
+
+.search-box::-webkit-input-placeholder {
+  font-family: 'Noto Sans', Helvetica, sans-serif;
+}
+
+.search-box:-ms-input-placeholder {
+  font-family: 'Noto Sans', Helvetica, sans-serif;
+}
+
+.search-box:-moz-placeholder {
+  font-family: 'Noto Sans', Helvetica, sans-serif;
+}
+
+.search-box::-moz-placeholder {
+  font-family: 'Noto Sans', Helvetica, sans-serif;
+}
