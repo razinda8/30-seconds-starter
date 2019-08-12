@@ -7,6 +7,12 @@
   // Menu container
   background: var(--menu-back-color);
   border-top: 1px solid var(--menu-border-color);
+  @media screen and (max-width: calc(#{$layout-medium-breakpoint} - 1px)) {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1001;
+  }
   @media screen and (min-width: $layout-medium-breakpoint) {
     border-top: none;
     border-right: 1px solid var(--menu-border-color);

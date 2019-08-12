@@ -69,9 +69,9 @@ module.exports = {
         name: `${config.name}`,
         short_name: `${config.shortName}`,
         start_url: `/`,
-        background_color: `#111`,
-        theme_color: `#111`,
-        display: `minimal-ui`,
+        background_color: `#1e253d`,
+        theme_color: `#1e253d`,
+        display: `standalone`,
         icon: `assets/30s-icon.png`, // This path is relative to the root of the site.
       },
     },
