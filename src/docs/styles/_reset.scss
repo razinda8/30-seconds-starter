@@ -65,7 +65,7 @@ img {
 // Style headings according to material design guidelines
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
-  margin: calc(1.5 * var(--universal-margin)) var(--universal-margin);
+  margin: 0.75rem 0.5rem;
 }
 h1 {
   font-size: 6rem;
@@ -74,10 +74,10 @@ h1 {
     text-align: center;
     & small {
       display: block;
-      margin-top: var(--universal-margin);
+      margin-top: 0.5rem;
       color: var(--secondary-fore-color);
     }
-    margin-bottom: calc(8 * var(--universal-margin));
+    margin-bottom: 4rem;
   }
 }
 h2 {
@@ -97,11 +97,11 @@ h6 {
 }
 // Style textual elements
 p {
-  margin: var(--universal-margin);
+  margin: 0.5rem;
 }
 ol, ul {
-  margin: var(--universal-margin);
-  padding-left: calc(2 * var(--universal-margin));
+  margin: 0.5rem;
+  padding-left: 1rem;
 }
 b, strong {
   font-weight: 600;
@@ -112,7 +112,7 @@ hr {
   border: 0;
   // Actual styling using variables
   line-height: 1.25em;
-  margin: var(--universal-margin);
+  margin: 0.5rem;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
 }

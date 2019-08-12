@@ -9,15 +9,15 @@ code, kbd, pre, code *, pre *, kbd *, code[class*="language-"], pre[class*="lang
 code {
   background: var(--code-back-color);
   color: var(--code-fore-color);
-  padding: calc(var(--universal-padding) / 4) calc(var(--universal-padding) / 2);
-  border-radius: var(--universal-border-radius);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.125rem;
 }
 pre {
   overflow: auto; // Responsiveness
   background: var(--pre-back-color);
   color: var(--pre-fore-color);
-  padding: calc(1.5 * var(--universal-padding));
-  margin: var(--universal-margin);
+  padding: 0.375rem;
+  margin: 0.5rem;
   border: 0;
 }
 
@@ -42,9 +42,9 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 pre[class*="language-"] {
-  padding: calc(2 * var(--universal-padding));
+  padding: 1rem;
   overflow: auto;
-  margin: var(--universal-margin) 0;
+  margin: 0.5rem 0;
   white-space: pre-wrap;
 }
 
