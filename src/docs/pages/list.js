@@ -1,73 +1,93 @@
-import React from "react";
+import React from 'react';
 import { graphql } from 'gatsby';
 import { connect } from 'react-redux';
-import { pushNewPage, pushNewQuery } from '../state/app';
+import { pushNewPage } from '../state/app';
 import { capitalize } from '../util';
 
-import Shell from "../components/Shell";
-import Meta from "../components/Meta";
-import AniLink from "gatsby-plugin-transition-link/AniLink";
-import Search from "../components/Search";
-import SnippetCard from "../components/SnippetCard";
+import Shell from '../components/Shell';
+import Meta from '../components/Meta';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
+import SnippetCard from '../components/SnippetCard';
 
 import { getRawCodeBlocks as getCodeBlocks } from '../util';
 
-const ListPage = (props) => {
+// ===================================================
+// Snippet list page
+// ===================================================
+const ListPage = props => {
   console.log(props);
   const snippets = props.data.snippetDataJson.data.map(snippet => ({
     title: snippet.title,
-    html: props.data.allMarkdownRemark.edges.find(v => v.node.frontmatter.title === snippet.title).node.html,
+    html: props.data.allMarkdownRemark.edges.find(
+      v => v.node.frontmatter.title === snippet.title,
+    ).node.html,
     tags: snippet.attributes.tags,
     text: snippet.attributes.text,
     id: snippet.id,
-    code: getCodeBlocks(props.data.allMarkdownRemark.edges.find(v => v.node.frontmatter.title === snippet.title).node.rawMarkdownBody).code,
+    code: getCodeBlocks(
+      props.data.allMarkdownRemark.edges.find(
+        v => v.node.frontmatter.title === snippet.title,
+      ).node.rawMarkdownBody,
+    ).code,
   }));
-  const site = props.data.site.siteMetadata;
   const tags = snippets.reduce((acc, snippet) => {
-    if (!snippet.tags)
-      return acc;
+    if (!snippet.tags) return acc;
     const primaryTag = snippet.tags[0];
-    if (!acc.includes(primaryTag))
-      acc.push(primaryTag);
+    if (!acc.includes(primaryTag)) acc.push(primaryTag);
     return acc;
   }, []);
   console.log(tags);
 
   React.useEffect(() => {
-    props.dispatch(pushNewPage('Snippet List', '/list'))
+    props.dispatch(pushNewPage('Snippet List', '/list'));
   }, []);
 
   return (
     <>
-      <Meta title="Snippet List"/>
+      <Meta title='Snippet List' />
       <Shell withIcon={false} isList>
-        <h2 className="page-title">Snippet List</h2>
-        <p className='light-sub'>Click on a snippet’s name to view its code or a tag name to view all snippets in that category.</p>
-        {
-          tags.map(tag => (
-            <>
-              <h3 className='tag-title'>
-                <AniLink paintDrip to={`/tags/${tag}`} hex={props.isDarkMode ? "#434E76" : "#FFFFFF"}>
-                  {capitalize(tag)}
-                </AniLink>
-              </h3>
-              {snippets.filter(snippet => snippet.tags[0] === tag).map(snippet => (
-                <SnippetCard short key={snippet.id} snippetData={snippet} isDarkMode={props.isDarkMode} />
+        <h2 className='page-title'>Snippet List</h2>
+        <p className='light-sub'>
+          Click on a snippet’s name to view its code or a tag name to view all
+          snippets in that category.
+        </p>
+        {tags.map(tag => (
+          <>
+            <h3 className='tag-title'>
+              <AniLink
+                paintDrip
+                to={`/tags/${tag}`}
+                hex={props.isDarkMode ? '#434E76' : '#FFFFFF'}
+              >
+                {capitalize(tag)}
+              </AniLink>
+            </h3>
+            {snippets
+              .filter(snippet => snippet.tags[0] === tag)
+              .map(snippet => (
+                <SnippetCard
+                  short
+                  key={snippet.id}
+                  snippetData={snippet}
+                  isDarkMode={props.isDarkMode}
+                />
               ))}
-            </>
-          ))
-        }
+          </>
+        ))}
       </Shell>
     </>
   );
-}
+};
 
-export default connect(state => ({
-  isDarkMode: state.app.isDarkMode,
-  lastPageTitle: state.app.lastPageTitle,
-  lastPageUrl: state.app.lastPageUrl,
-  searchQuery: state.app.searchQuery
-}), null)(ListPage);
+export default connect(
+  state => ({
+    isDarkMode: state.app.isDarkMode,
+    lastPageTitle: state.app.lastPageTitle,
+    lastPageUrl: state.app.lastPageUrl,
+    searchQuery: state.app.searchQuery,
+  }),
+  null,
+)(ListPage);
 
 export const listPageQuery = graphql`
   query snippetListing {
@@ -78,7 +98,7 @@ export const listPageQuery = graphql`
         author
       }
     }
-    snippetDataJson(meta: {type: {eq: "snippetListingArray"}}) {
+    snippetDataJson(meta: { type: { eq: "snippetListingArray" } }) {
       data {
         id
         title

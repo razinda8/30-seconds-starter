@@ -20,7 +20,10 @@ const getFilesInDir = (directoryPath, withPath, exclude = null) => {
     if (withPath) {
       // a hacky way to do conditional array.map
       return directoryFilenames.reduce((fileNames, fileName) => {
-        if (exclude == null || !exclude.some(toExclude => fileName === toExclude))
+        if (
+          exclude == null ||
+          !exclude.some(toExclude => fileName === toExclude)
+        )
           fileNames.push(`${directoryPath}/${fileName}`);
         return fileNames;
       }, []);
@@ -43,18 +46,20 @@ const getCodeBlocks = str => {
   let results = [];
   let m = null;
   while ((m = regex.exec(str)) !== null) {
-    if (m.index === regex.lastIndex)
-      regex.lastIndex += 1;
+    if (m.index === regex.lastIndex) regex.lastIndex += 1;
 
     m.forEach((match, groupIndex) => {
       results.push(match);
     });
   }
-  const replacer = new RegExp(`\`\`\`${config.language}([\\s\\S]*?)\`\`\``, "g");
+  const replacer = new RegExp(
+    `\`\`\`${config.language}([\\s\\S]*?)\`\`\``,
+    'g',
+  );
   results = results.map(v => v.replace(replacer, '$1').trim());
   return {
     code: results[0],
-    example: results[1]
+    example: results[1],
   };
 };
 // Gets the textual content for a snippet file.
@@ -63,8 +68,7 @@ const getTextualContent = str => {
   const results = [];
   let m = null;
   while ((m = regex.exec(str)) !== null) {
-    if (m.index === regex.lastIndex)
-      regex.lastIndex += 1;
+    if (m.index === regex.lastIndex) regex.lastIndex += 1;
 
     m.forEach((match, groupIndex) => {
       results.push(match);
@@ -80,7 +84,9 @@ const readSnippets = snippetsPath => {
   let snippets = {};
   try {
     for (let snippet of snippetFilenames) {
-      let data = frontmatter(fs.readFileSync(path.join(snippetsPath, snippet), 'utf8'));
+      let data = frontmatter(
+        fs.readFileSync(path.join(snippetsPath, snippet), 'utf8'),
+      );
       snippets[snippet] = {
         id: snippet.slice(0, -3),
         title: data.attributes.title,
@@ -89,12 +95,12 @@ const readSnippets = snippetsPath => {
           fileName: snippet,
           text: getTextualContent(data.body),
           codeBlocks: getCodeBlocks(data.body),
-          tags: data.attributes.tags.split(',').map(t => t.trim())
+          tags: data.attributes.tags.split(',').map(t => t.trim()),
         },
         meta: {
-          hash: hashData(data.body)
-        }
-      }
+          hash: hashData(data.body),
+        },
+      };
     }
   } catch (err) {
     console.log(`${red('ERROR!')} During snippet loading: ${err}`);
@@ -108,5 +114,5 @@ module.exports = {
   hashData,
   getCodeBlocks,
   getTextualContent,
-  readSnippets
+  readSnippets,
 };

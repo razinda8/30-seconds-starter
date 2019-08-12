@@ -1,7 +1,7 @@
 const {
   isTravisCI,
   isTravisCronOrAPI,
-  isNotTravisCronOrAPI
+  isNotTravisCronOrAPI,
 } = require('./environmentCheck');
 const {
   getMarkDownAnchor,
@@ -9,14 +9,14 @@ const {
   optimizeNodes,
   capitalize,
   prepTaggedData,
-  makeExamples
+  makeExamples,
 } = require('./helpers');
 const {
   getFilesInDir,
   hashData,
   getCodeBlocks,
   getTextualContent,
-  readSnippets
+  readSnippets,
 } = require('./snippetParser');
 
 module.exports = {
@@ -33,5 +33,5 @@ module.exports = {
   hashData,
   getCodeBlocks,
   getTextualContent,
-  readSnippets
+  readSnippets,
 };

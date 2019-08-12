@@ -32,7 +32,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `
+    `,
   ).then(result => {
     if (result.errors) {
       throw result.errors;
@@ -42,7 +42,8 @@ exports.createPages = ({ graphql, actions }) => {
     const snippets = result.data.allMarkdownRemark.edges;
 
     snippets.forEach((post, index) => {
-      const previous = index === snippets.length - 1 ? null : snippets[index + 1].node;
+      const previous =
+        index === snippets.length - 1 ? null : snippets[index + 1].node;
       const next = index === 0 ? null : snippets[index - 1].node;
 
       createPage({
@@ -57,14 +58,12 @@ exports.createPages = ({ graphql, actions }) => {
     });
 
     // Create tag pages.
-    const tags = snippets.reduce((acc,post) => {
-      if(!post.node.frontmatter || !post.node.frontmatter.tags)
-        return acc;
+    const tags = snippets.reduce((acc, post) => {
+      if (!post.node.frontmatter || !post.node.frontmatter.tags) return acc;
       const primaryTag = post.node.frontmatter.tags.split(',')[0];
-      if(!acc.includes(primaryTag))
-        acc.push(primaryTag);
+      if (!acc.includes(primaryTag)) acc.push(primaryTag);
       return acc;
-    },[]);
+    }, []);
 
     tags.forEach(tag => {
       const tagPath = `/tags/${toKebabCase(tag)}/`;
@@ -74,13 +73,13 @@ exports.createPages = ({ graphql, actions }) => {
         component: tagPage,
         context: {
           tag,
-          tagRegex
+          tagRegex,
         },
       });
     });
 
     return null;
-  })
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

@@ -1,8 +1,11 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
+import React from 'react';
+import Helmet from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
 import '../styles/index.scss';
 
+// ===================================================
+// Page metadata (using Helmet)
+// ===================================================
 const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
   const { site, file } = useStaticQuery(
     graphql`
@@ -14,7 +17,7 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
             author
           }
         }
-        file(relativePath: {eq: "logo.png"}) {
+        file(relativePath: { eq: "logo.png" }) {
           id
           childImageSharp {
             fluid(maxHeight: 400) {
@@ -23,7 +26,7 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
           }
         }
       }
-    `
+    `,
   );
 
   const metaDescription = description || site.siteMetadata.description;
@@ -31,7 +34,7 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang
+        lang,
       }}
       title={title ? title : site.siteMetadata.title}
       titleTemplate={title ? `%s - ${site.siteMetadata.title}` : '%s'}
@@ -42,11 +45,11 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
         },
         {
           name: `author`,
-          content: site.siteMetadata.author
+          content: site.siteMetadata.author,
         },
         {
           name: `viewport`,
-          content: `width=device-width, initial-scale=1`
+          content: `width=device-width, initial-scale=1`,
         },
         {
           name: `og:title`,
@@ -66,9 +69,10 @@ const Meta = ({ description = '', lang = 'en', meta = [], title }) => {
         },
       ].concat(meta)}
       bodyAttributes={{
-        class: 'card-page'
-      }}/>
+        class: 'card-page',
+      }}
+    />
   );
-}
+};
 
 export default Meta;
