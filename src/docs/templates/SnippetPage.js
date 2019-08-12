@@ -16,8 +16,6 @@ const SnippetPage = props => {
   const postData = props.data.snippetDataJson.data.find(
     v => v.title === post.frontmatter.title,
   );
-  console.dir(post);
-  console.dir(postData);
 
   return (
     <>

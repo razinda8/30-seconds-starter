@@ -13,7 +13,6 @@ import { capitalize, getRawCodeBlocks as getCodeBlocks } from '../util';
 // Individual snippet category/tag page
 // ===================================================
 const TagRoute = props => {
-  console.log(props);
   const posts = props.data.allMarkdownRemark.edges;
   const tag = props.pageContext.tag;
 
@@ -30,8 +29,8 @@ const TagRoute = props => {
         {posts &&
           posts.map(({ node }) => (
             <SnippetCard
+              key={`snippet_${node.id}`}
               short
-              key={node.id}
               snippetData={{
                 title: node.frontmatter.title,
                 html: node.html,

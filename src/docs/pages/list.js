@@ -15,7 +15,6 @@ import { getRawCodeBlocks as getCodeBlocks } from '../util';
 // Snippet list page
 // ===================================================
 const ListPage = props => {
-  console.log(props);
   const snippets = props.data.snippetDataJson.data.map(snippet => ({
     title: snippet.title,
     html: props.data.allMarkdownRemark.edges.find(
@@ -36,7 +35,6 @@ const ListPage = props => {
     if (!acc.includes(primaryTag)) acc.push(primaryTag);
     return acc;
   }, []);
-  console.log(tags);
 
   React.useEffect(() => {
     props.dispatch(pushNewPage('Snippet List', '/list'));
@@ -53,8 +51,9 @@ const ListPage = props => {
         </p>
         {tags.map(tag => (
           <>
-            <h3 className='tag-title'>
+            <h3 className='tag-title' key={`tag_title_${tag}`}>
               <AniLink
+                key={`tag_link_${tag}`}
                 paintDrip
                 to={`/tags/${tag}`}
                 hex={props.isDarkMode ? '#434E76' : '#FFFFFF'}
@@ -66,8 +65,8 @@ const ListPage = props => {
               .filter(snippet => snippet.tags[0] === tag)
               .map(snippet => (
                 <SnippetCard
+                  key={`snippet_${snippet.id}`}
                   short
-                  key={snippet.id}
                   snippetData={snippet}
                   isDarkMode={props.isDarkMode}
                 />

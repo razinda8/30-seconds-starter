@@ -42,7 +42,6 @@ const CardCorner = ({ difficulty = 'intermediate' }) => (
 // ===================================================
 const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
   const [examplesOpen, setExamplesOpen] = React.useState(false);
-  console.log(snippetData);
   const tags = snippetData.tags;
   let cardCodeHtml = `${optimizeAllNodes(
     getCodeBlocks(snippetData.html).code,
@@ -55,7 +54,7 @@ const FullCard = ({ snippetData, difficulty, isDarkMode }) => {
       <CardCorner difficulty={difficulty} />
       <h4 className='card-title'>{snippetData.title}</h4>
       {tags.map(tag => (
-        <span className='tag'>{tag}</span>
+        <span className='tag' key={`tag_${tag}`}>{tag}</span>
       ))}
       <p
         className='card-description'

@@ -14,7 +14,6 @@ import { getRawCodeBlocks as getCodeBlocks } from '../util';
 // Search page
 // ===================================================
 const SearchPage = props => {
-  console.log(props);
   const snippets = props.data.snippetDataJson.data.map(snippet => ({
     title: snippet.title,
     html: props.data.allMarkdownRemark.edges.find(
@@ -86,8 +85,8 @@ const SearchPage = props => {
             <h2 className='page-sub-title'>Search results</h2>
             {searchResults.map(snippet => (
               <SnippetCard
+                key={`snippet_${snippet.id}`}
                 short
-                key={snippet.id}
                 snippetData={snippet}
                 isDarkMode={props.isDarkMode}
               />
