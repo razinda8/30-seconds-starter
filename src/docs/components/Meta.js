@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-import '../styles/index.scss';
+require('../styles/index.scss'); // Do not change this to `import`, it's not going to work, no clue why
 
 // ===================================================
 // Page metadata (using Helmet)

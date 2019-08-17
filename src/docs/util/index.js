@@ -6,7 +6,7 @@ const capitalize = (str, lowerRest = false) =>
   (lowerRest ? str.slice(1).toLowerCase() : str.slice(1));
 
 // Get the textual content in a gatsby page
-const getTextualContent = str => {
+const getTextualContent = (str, noExplain = false) => {
   const regex = /([\s\S]*?)<div class="gatsby-highlight"/g;
   const results = [];
   let m = null;
@@ -17,6 +17,8 @@ const getTextualContent = str => {
       results.push(match);
     });
   }
+  if(noExplain)
+    return results[1].slice(0, results[1].lastIndexOf('<p>'));
   return results[1];
 };
 
