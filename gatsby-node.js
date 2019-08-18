@@ -62,11 +62,13 @@ exports.createPages = ({ graphql, actions }) => {
 
     tags.forEach(tag => {
       const tagPath = `/tags/${toKebabCase(tag)}/`;
+      const tagRegex = `/^\\s*${tag}/`;
       createPage({
         path: tagPath,
         component: tagPage,
         context: {
           tag,
+          tagRegex,
         },
       });
     });
